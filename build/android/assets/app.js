@@ -1,0 +1,1 @@
+var data=require("/lib/data"),LoadData=new data;LoadData.init(function(){var a=Ti.UI.createWindow({url:"mainMenu.js"});a.open()});

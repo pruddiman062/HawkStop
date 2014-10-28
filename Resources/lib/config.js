@@ -31,22 +31,41 @@ if(Ti.Platform.osname == 'mobileweb')
 
 
 //App Font Settings
-exports.FONT_COLOR = "#000000";
-exports.FONT_SIZE = "35px";
-exports.FONT_SHADOW_COLOR = "#000000";
-exports.FONT_SHADOW_OFFSETx = 2;
-exports.FONT_SHADOW_OFFSETy = 2;
-
+//Remember to tell a programmer if you want to use custom fonts
+//because we have to do some fancy shit!
+exports.DEFAULT_FONT = 	{ 
+							fontStyle: "sans",
+							fontSize: "30%", 
+							fontWeight: "bold"
+						};
+exports.ALTERNATIVE_FONT = 	{ 
+								fontStyle: "sans-serif",
+								fontSize: "20%", 
+								fontWeight: "normal"
+							};
+exports.DEFAULT_FONT_COLOR = "#000000";
+exports.ALTERNATIVE_FONT_COLOR = "#000000";
 
 //App Menu Button Settings
-exports.MENU_BG_COLOR = '#FFFFFF';
+exports.MENU_BG_COLOR = ['#EEFFEE','#FFEEEE','#EEEEFF' ];
 exports.MENU_BORDER_COLOR = '#000000';
 exports.MENU_BORDER_WIDTH = '2px';
 exports.MENU_BORDER_RADIUS = '15px';
+exports.MENU_BUTTON_WIDTH = "100%";
+exports.MENU_BUTTON_HEIGHT = "29%";
+exports.MENU_BUTTON_TOP_MARGIN = "1%";
 
-//Shuttle Stop Dim
-exports.STOP_X_SIZE = 25;
-exports.STOP_Y_SIZE = 25;
+//App Menu Icon Settings
+exports.MENU_BUTTON_ICON_PATH = "/images/menuIcon";
+exports.MENU_ICON_SCALE = "15%";
+exports.MENU_ICON_INDENT = "65%";
+
+//App Menu Text Settings
+exports.MENU_LABEL_INDENT = "15%";
+
+//Shuttle Stop Icon Size
+exports.STOP_Y_SIZE = 100;
+exports.STOP_X_SIZE = 100;
 
 //Data URI
 exports.DATA_URI = "http://shuttleapp.patrickruddiman.com/xml.php";
@@ -55,8 +74,5 @@ exports.LOCAL_XML = exports.HS_ASSETS+'/feed.xml';
 if(Ti.App.Properties.xmlDownload == undefined)
 {
 	Ti.App.Properties.xmlDownload = 0;
+	Ti.App.Properties.xmlDownloadTime = 0;
 }
-
-exports.MAP_POINTS = {
-	
-};

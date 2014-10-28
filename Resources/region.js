@@ -36,7 +36,7 @@ var region = {
 	init: function(){
 		this.container = Draggable.createView({
 			borderColor: "black",
-			layout: 'vertical',
+			layout: 'composite',
 			height: 1178,
 			width: 1302,
 			top:0,
@@ -49,15 +49,20 @@ var region = {
 		  maxTop: 0
 		});
 		
-		this.container.add(Ti.UI.createImageView({
-			image: imageMap,
-			height: "100%",
-			width: "100%"
-		}));
-		this.addStops(regionid, this.container);
+		this.container.add(this.buildMap());
+		this.addStops(regionid);
 		regionWindow.add(this.container);
 		regionWindow.add(this.buildControlBar());
 		//this.clean();
+	},
+	buildMap: function()
+	{
+		var mapView = Ti.UI.createImageView({
+			image: imageMap,
+			height: "100%",
+			width: "100%"
+		});
+		return mapView;
 	},
 	buildControlBar: function()
 	{
@@ -87,30 +92,28 @@ var region = {
 		
 		return view;
 	},
-	addStops: function(regionid, parent)
+	addStops: function(regionid)
 	{
 		var data = require('/lib/data');
 		var AppData = new data();
-		var stops;
-		AppData.init(function(data){
-			AppData.setData(data);
-			stops = AppData.getStops(1);
-			for(i = 0; i<stops.length; i++)
+		var stops = AppData.getStops(1);
+		for(i = 0; i<stops.length; i++)
+		{
+			if(stops[i].Long != "" && stops[i].Lat !="")
 			{
 				var view = Ti.UI.createImageView({
-					image: config.HS_ASSETS+"/stop.png",
+					image: config.HS_ASSETS+"/images/stop.png",
 					height: config.STOP_Y_SIZE,
 					width: config.STOP_X_SIZE,
-					top: stops[i].Long,
-					left: stops[i].Lat
+					top: stops[i].Long-(config.STOP_Y_SIZE/2),
+					left: stops[i].Lat-(config.STOP_X_SIZE/2)
 				});
-				parent.add(view);
+				this.container.add(view);
 			}
-			data = null;
-			AppData = null;
-			stops = null;
-		});
-		
+		}
+		data = null;
+		AppData = null;
+		stops = null;
 	},
 	clean: function()
 	{

@@ -12,13 +12,15 @@
 //require(HS_INCLUDES+'/data.js');
 //require(HS_INCLUDES+'/login.js');
 
+var data = require('/lib/data');
+var LoadData = new data();
+LoadData.init(function(data){
+		var rootWindow = Ti.UI.createWindow({
+			url:'mainMenu.js'
+		});
 
-
-var rootWindow = Ti.UI.createWindow({
-	url:'mainMenu.js'
+		rootWindow.open();	
 });
-
-rootWindow.open();
 
 
 //for Later
