@@ -1,8 +1,0 @@
-"C:/Users/Patrick/Documents/Titanium_Studio_Workspace/HawkStop/build/android/gen/android/support/v7/appcompat/R.java"
-"C:/Users/Patrick/Documents/Titanium_Studio_Workspace/HawkStop/build/android/gen/teche/hawkstop/ApplicationStylesheet.java"
-"C:/Users/Patrick/Documents/Titanium_Studio_Workspace/HawkStop/build/android/gen/teche/hawkstop/AssetCryptImpl.java"
-"C:/Users/Patrick/Documents/Titanium_Studio_Workspace/HawkStop/build/android/gen/teche/hawkstop/HawkstopActivity.java"
-"C:/Users/Patrick/Documents/Titanium_Studio_Workspace/HawkStop/build/android/gen/teche/hawkstop/HawkstopAppInfo.java"
-"C:/Users/Patrick/Documents/Titanium_Studio_Workspace/HawkStop/build/android/gen/teche/hawkstop/HawkstopApplication.java"
-"C:/Users/Patrick/Documents/Titanium_Studio_Workspace/HawkStop/build/android/gen/teche/hawkstop/R.java"
-"C:/Users/Patrick/Documents/Titanium_Studio_Workspace/HawkStop/build/android/gen/ti/modules/titanium/ui/R.java"

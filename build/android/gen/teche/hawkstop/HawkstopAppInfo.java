@@ -17,7 +17,7 @@ public final class HawkstopAppInfo implements ITiAppInfo
 	}
 
 	public String getDeployType() {
-		return "test";
+		return "development";
 	}
 
 	public String getId() {

@@ -1,6 +1,6 @@
 {
-	"target": "device",
-	"deployType": "test",
+	"target": "emulator",
+	"deployType": "development",
 	"classname": "Hawkstop",
 	"platformPath": "C:\\ProgramData\\Titanium\\mobilesdk\\win32\\3.4.0.GA\\android",
 	"modulesHash": "6f5228c5d624f14f9fbeb512d6af019d",
@@ -19,14 +19,14 @@
 	"guid": "2a8359db-8ee7-4942-b7fc-e923a2cd25ad",
 	"icon": "icon.png",
 	"fullscreen": false,
-	"skipJSMinification": false,
+	"skipJSMinification": true,
 	"mergeCustomAndroidManifest": false,
-	"encryptJS": true,
+	"encryptJS": false,
 	"minSDK": 14,
 	"targetSDK": 19,
-	"propertiesHash": "e7bbbeeae667b0f10038305e945fcff3",
+	"propertiesHash": "cb42f216692f25f1b57c0cec52a6c506",
 	"activitiesHash": "d41d8cd98f00b204e9800998ecf8427e",
 	"servicesHash": "d41d8cd98f00b204e9800998ecf8427e",
 	"jssFilesHash": "d41d8cd98f00b204e9800998ecf8427e",
-	"jarLibHash": "de4a7dadc6744c9470706cd8dcf1c08b"
+	"jarLibHash": "63efe189f178684725c88e539255eb84"
 }

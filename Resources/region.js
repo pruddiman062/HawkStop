@@ -50,7 +50,18 @@ var region = {
 		});
 		
 		this.container.add(this.buildMap());
-		this.addStops(regionid);
+		
+		var data = require('/lib/data');
+		var AppData = new data();
+		var stops = AppData.getStops(regionid);
+		for(i = 0; i<stops.length; i++)
+		{
+			if(stops[i].Long != "" && stops[i].Lat !="")
+			{
+				this.addStops(regionid, stops[i].Id, stops[i].Lat, stops[i].Long);
+			}
+		}
+		
 		regionWindow.add(this.container);
 		regionWindow.add(this.buildControlBar());
 		//this.clean();
@@ -92,28 +103,30 @@ var region = {
 		
 		return view;
 	},
-	addStops: function(regionid)
+	addStops: function(regionid, stopid, gpsLat, gpsLong)
 	{
-		var data = require('/lib/data');
-		var AppData = new data();
-		var stops = AppData.getStops(1);
-		for(i = 0; i<stops.length; i++)
-		{
-			if(stops[i].Long != "" && stops[i].Lat !="")
-			{
-				var view = Ti.UI.createImageView({
-					image: config.HS_ASSETS+"/images/stop.png",
-					height: config.STOP_Y_SIZE,
-					width: config.STOP_X_SIZE,
-					top: stops[i].Long-(config.STOP_Y_SIZE/2),
-					left: stops[i].Lat-(config.STOP_X_SIZE/2)
-				});
-				this.container.add(view);
-			}
-		}
-		data = null;
-		AppData = null;
-		stops = null;
+		
+		var view = Ti.UI.createImageView({
+			image: config.HS_ASSETS+"/images/stop.png",
+			height: config.STOP_Y_SIZE+config.ICON_SIZE_UNITS,
+			width: config.STOP_X_SIZE+config.ICON_SIZE_UNITS,
+			top: gpsLong-(config.STOP_Y_SIZE/2),
+			left: gpsLat-(config.STOP_X_SIZE/2)
+		});
+		
+		view.addEventListener('click', function(){
+			var ModalWindow = Ti.UI.createWindow({
+				url:'schedule.js',
+				stopid: stopid,
+				region: regionid,
+				backgroundColor: 'transparent',
+				opacity: 1.0,
+				navBarHidden: true
+			});
+			ModalWindow.open(); 
+		});
+		this.container.add(view);
+		
 	},
 	clean: function()
 	{
