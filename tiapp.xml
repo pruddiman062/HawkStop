@@ -7,7 +7,7 @@
     <version>1.0</version>
     <publisher>Patrick</publisher>
     <url>http://shuttleapp.patrickruddiman.com</url>
-    <description/>
+    <description>undefined</description>
     <copyright>2014 by Patrick</copyright>
     <icon>icon.png</icon>
     <fullscreen>false</fullscreen>
@@ -59,10 +59,10 @@
         <module version="2.0.3">ti.draggable</module>
     </modules>
     <deployment-targets>
-        <target device="iphone">false</target>
-        <target device="ipad">false</target>
+        <target device="iphone">true</target>
+        <target device="ipad">true</target>
         <target device="android">true</target>
-        <target device="blackberry">false</target>
+        <target device="blackberry">true</target>
         <target device="mobileweb">true</target>
     </deployment-targets>
     <sdk-version>3.4.0.GA</sdk-version>

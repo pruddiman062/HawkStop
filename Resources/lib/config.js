@@ -16,7 +16,7 @@ exports.DISP_HEIGHT;
 if((Ti.Platform.osname == 'iphone')||(Ti.Platform.osname == 'ipad'))
 {
 	exports.DISP_HEIGHT = Ti.Platform.displayCaps.platformHeight;
-	DISP_WIDTH = Ti.Platform.displayCaps.platformWidth;
+	exports.DISP_WIDTH = Ti.Platform.displayCaps.platformWidth;
 }
 else
 {

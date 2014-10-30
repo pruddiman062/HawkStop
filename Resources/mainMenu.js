@@ -42,18 +42,10 @@ var mainMenu = {
 		({
 			width: config.MENU_BUTTON_WIDTH,
 			height: config.MENU_BUTTON_HEIGHT,
-		});
-
-		//add a button for visuals
-		var visual =  Ti.UI.createButton
-		({
-			width: "100%",
-			height: "100%",
 			backgroundColor: config.MENU_BG_COLOR[ iconID ],
 			borderColor: config.MENU_BORDER_COLOR,
 			borderWidth: config.MENU_BORDER_WIDTH,
 			borderRadius: config.MENU_BORDER_RADIUS,
-
 		});
 
 		//add a label
@@ -79,17 +71,13 @@ var mainMenu = {
 
 		});
 
-		//add a button for actual clicking effect...
-		//this is because the image and text actually stops you from being able to click
-		//the other button
+		//add a translucent button for clicking
 		var button =  Ti.UI.createButton
 		({
 			width: "100%",
 			height: "100%",
-			opacity: 0.0
+			backgroundColor: "transparent"
 		});
-		
-		container.add( visual );
 
 		container.add( label );
 
