@@ -123,8 +123,15 @@ var schedule = {
 			}
 			if(sHour == curHours+1)
 			{
-				ETA = (sMinutes+(60-curMinutes));
-				NextStop = schedule[(i+1)].time;
+				ETA = (parseInt(sMinutes)+(60-curMinutes));
+				if(i+1 == schedule.length)
+				{
+					NextStop = schedule[0].time;	
+				}
+				else
+				{
+					NextStop = schedule[(i+1)].time;
+				}
 				last = false;
 				break;
 			}

@@ -45,7 +45,7 @@ var region = {
 		this.container.draggable.setConfig({
 		  minLeft: -1302+config.DISP_WIDTH,
 		  maxLeft: 0,
-		  minTop: -1178+config.DISP_HEIGHT,
+		  minTop: -1178+config.DISP_HEIGHT-((config.DISP_HEIGHT/10)/2),
 		  maxTop: 0
 		});
 		
