@@ -18,30 +18,35 @@ var mainMenu = {
 	init: function()
 	{	
 		this.container = Ti.UI.createView
-		({
+		( {
 			width: config.DISP_WIDTH,
 			height: config.DISP_HEIGHT,
 			borderColor: "black",
 			layout: 'vertical',
 			top: config.MENU_BUTTON_TOP_MARGIN
-		});
+		} );
 		
-		this.container.add( this.addButton( "Bristol", 0, this.container ));
-		this.container.add( this.addButton( "Campus", 1, this.container ));
-		this.container.add( this.addButton( "Bay Point", 2, this.container ));
+		this.container.add( this.addButton( "Bristol", 0, config.MENU_BUTTON_HEIGHT, this.container ));
+
+		this.container.add( this.addButton( "Campus", 1, config.MENU_BUTTON_HEIGHT, this.container ));
+
+		this.container.add( this.addButton( "Bay Point", 2, config.MENU_BUTTON_HEIGHT, this.container ));
+
+		this.container.add( this.addButton( "About", 3, config.MENU_ABOUT_HEIGHT, this.container ));
 		
-		Ti.UI.currentWindow.add(this.container);
+		Ti.UI.currentWindow.add( this.container );
+
 		this.clean();
 	},
 	
 	//creates a button to be added to the view. 
-	addButton: function( buttonText, iconID, parent )//Returns a view
+	addButton: function( buttonText, iconID, buttonHeight, parent )//Returns a view
 	{
 		//start with an empty container
 		var container = Ti.UI.createView
 		({
 			width: config.MENU_BUTTON_WIDTH,
-			height: config.MENU_BUTTON_HEIGHT,
+			height: buttonHeight,
 			backgroundColor: config.MENU_BG_COLOR[ iconID ],
 			borderColor: config.MENU_BORDER_COLOR,
 			borderWidth: config.MENU_BORDER_WIDTH,
@@ -95,6 +100,7 @@ var mainMenu = {
 				});
 				
 				win.open();
+
 				//Ti.UI.currentWindow.close();
 				
 		});
@@ -109,4 +115,5 @@ var mainMenu = {
 		this.buttons = [];
 	}
 };
+
 mainMenu.init();

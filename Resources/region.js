@@ -27,6 +27,11 @@ switch(location)
 		imageMap = config.HS_ASSETS+'/images/map.jpg';
 		regionid = 1;
 	break;
+
+	case 'About':
+		imageMap = config.HS_ASSETS+'/images/map.jpg';
+		regionid = 1;
+	break;
 }
 
 
