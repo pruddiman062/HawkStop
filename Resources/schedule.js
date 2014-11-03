@@ -5,6 +5,7 @@
  * Desc: schedule popup, it handles the popup for upcoming stop times.
  * requires: lib.config, lib.data;
  */
+ 
 var modal = Ti.UI.currentWindow;
 var stopid = modal.stopid;
 var regionid = modal.region;

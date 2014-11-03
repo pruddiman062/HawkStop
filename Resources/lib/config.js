@@ -74,6 +74,8 @@ exports.STOP_Y_SIZE = 60;
 exports.STOP_X_SIZE = 60;
 exports.ICON_SIZE_UNITS = 'px';
 
+//about page settings
+exports.ABOUT_HEIGHT = '200%';
 
 //Schedule modal settings
 exports.MODAL_HEIGHT = '25%';
@@ -91,8 +93,18 @@ exports.TIME_COLOR_4 = "#000000";
 exports.DATA_URI = "http://shuttleapp.patrickruddiman.com/xml.php";
 exports.LOCAL_XML = exports.HS_ASSETS+'/feed.xml';
 
+//STRINGS
+exports.HOW_TO_TEXT = 	"Hello! Welcome to HawkStop!" +
+						"Simply tap the map you want to access," +
+						"then tap the stop you want times from.";
+exports.PROJECT_LEADS = [ "Design Team: Karly Rust","App Team: Dan Barron","Business Team: Dylan Jann" ];
+exports.CLUB_OFFICERS = [ 	"President: Willem Delventhal", "Vice President: Patrick Ruddiman", "Secretary: Chris Wade",
+							"Treasurer: Alex Quaglieri", "Social Media Coordinator: Shayna Moran" ];
+exports.SUPPORTING_CLUB_MEMBERS = [ "First Last", "First Last", "First Last", "First Last", "First Last", "First Last",
+									"First Last", "First Last", "First Last", "First Last", "First Last", "First Last" ];
+
 if(Ti.App.Properties.xmlDownload == undefined)
-{
+{	
 	Ti.App.Properties.xmlDownload = 0;
 	Ti.App.Properties.xmlDownloadTime = 0;
 }

@@ -92,14 +92,28 @@ var mainMenu = {
 
 		button.addEventListener( 'click', function( e ) 
 		{
-				
-				var win = Ti.UI.createWindow
-				({
-					url:'region.js',
-					locale: buttonText
-				});
-				
-				win.open();
+				if( buttonText === "About" )
+				{
+					var ModalWindow = Ti.UI.createWindow
+					({
+						url:'about.js',
+						backgroundColor: 'transparent',
+						opacity: 1.0,
+						navBarHidden: true
+					});
+
+					ModalWindow.open(); 
+				}
+				else
+				{
+					var win = Ti.UI.createWindow
+					({
+						url:'region.js',
+						locale: buttonText
+					});
+					
+					win.open();
+				}
 
 				//Ti.UI.currentWindow.close();
 				
