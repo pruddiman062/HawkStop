@@ -63,7 +63,7 @@ var region = {
 		{
 			if(stops[i].Long != "" && stops[i].Lat !="")
 			{
-				this.addStops(regionid, stops[i].Id, stops[i].Lat, stops[i].Long);
+				this.addStops(regionid, stops[i].Id, stops[i].x, stops[i].y);
 			}
 		}
 		
@@ -108,15 +108,15 @@ var region = {
 		
 		return view;
 	},
-	addStops: function(regionid, stopid, gpsLat, gpsLong)
+	addStops: function(regionid, stopid, x, y)
 	{
 		
 		var view = Ti.UI.createImageView({
 			image: config.HS_ASSETS+"/images/stop.png",
 			height: config.STOP_Y_SIZE+config.ICON_SIZE_UNITS,
 			width: config.STOP_X_SIZE+config.ICON_SIZE_UNITS,
-			top: gpsLong-(config.STOP_Y_SIZE/2),
-			left: gpsLat-(config.STOP_X_SIZE/2)
+			top: y-(config.STOP_Y_SIZE/2),
+			left: x-(config.STOP_X_SIZE/2)
 		});
 		
 		view.addEventListener('click', function(){

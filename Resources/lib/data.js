@@ -57,6 +57,8 @@ data.parseXML = function(XML)
 			stopOBJ[j] = {
 				Id:	stops.item(j).getAttribute('id'),
 				Name: stops.item(j).getAttribute('name'),
+				x: stops.item(j).getAttribute('x'),
+				y: stops.item(j).getAttribute('y'),
 				Lat: stops.item(j).getAttribute('latitude'),
 				Long: stops.item(j).getAttribute('longitude'),
 				schedule:dataOBJ
