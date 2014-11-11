@@ -52,13 +52,13 @@ exports.DEFAULT_FONT_COLOR = "#000000";
 exports.ALTERNATIVE_FONT_COLOR = "#000000";
 
 //App Menu Button Settings
-exports.MENU_BG_COLOR = ['#EEFFEE','#FFEEEE','#EEEEFF', '#EEEEEE' ];
+exports.MENU_BG_COLOR = ['#EEFFEE','#FFEEEE','#EEEEFF', '#FFD700' ];
 exports.MENU_BORDER_COLOR = '#000000';
 exports.MENU_BORDER_WIDTH = '2px';
 exports.MENU_BORDER_RADIUS = '15px';
 exports.MENU_BUTTON_WIDTH = "100%";
 exports.MENU_BUTTON_HEIGHT = "26%";
-exports.MENU_ABOUT_HEIGHT = "12%";
+exports.MENU_TITLE_HEIGHT = "12%";
 exports.MENU_BUTTON_TOP_MARGIN = "5%";
 
 //App Menu Icon Settings
@@ -75,7 +75,7 @@ exports.STOP_X_SIZE = 60;
 exports.ICON_SIZE_UNITS = 'px';
 
 //about page settings
-exports.ABOUT_HEIGHT = '200%';
+exports.ABOUT_HEIGHT = '30%';
 
 //Schedule modal settings
 exports.MODAL_HEIGHT = '25%';

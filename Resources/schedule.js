@@ -20,11 +20,14 @@ var schedule = {
 	regionId: regionid,
 	init: function(){
 		
-		var mView = Ti.UI.createView({
+		var mView = Ti.UI.createView
+		({
 			backgroundColor:'#000000',
 			opacity: .6
 		});
-		var view = Ti.UI.createView({
+		
+		var view = Ti.UI.createView
+		({
 			height: config.MODAL_HEIGHT,
 			width: config.MODAL_WIDTH,
 			backgroundColor: config.MODAL_BACKGROUND_COLOR,
@@ -32,9 +35,11 @@ var schedule = {
 			layout: "vertical"
 		});
 		
-		view.addEventListener('click',function(){
+		view.addEventListener('click',function()
+		{
 			modal.close();
 		});
+		
 		var schedule = this.getSchedule();
 		
 		currColor = "";
@@ -56,7 +61,8 @@ var schedule = {
 		
 		if(!schedule[2])
 		{
-			var label0 = Ti.UI.createLabel({
+			var label0 = Ti.UI.createLabel
+			({
 				text:"The shuttle arrives in:",
 				color: config.TIME_COLOR_4,
 				height:"auto",
@@ -65,7 +71,8 @@ var schedule = {
 				textAlign: Ti.UI.TEXT_ALIGNMENT_LEFT
 			});
 			
-			var label1 = Ti.UI.createLabel({
+			var label1 = Ti.UI.createLabel
+			({
 				text:schedule[0]+" minutes",
 				color: currColor,
 				height:"auto",
@@ -76,7 +83,8 @@ var schedule = {
 			view.add(label0);
 			view.add(label1);
 		}
-		var label2 = Ti.UI.createLabel({
+		var label2 = Ti.UI.createLabel
+		({
 			text:"The following shuttle arrives at: "+schedule[1],
 			color: config.TIME_COLOR_4,
 			height:"auto",

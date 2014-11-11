@@ -10,7 +10,7 @@ var modal = Ti.UI.currentWindow;
 
 var config = require('/lib/config');
 
-var Draggable = require('ti.draggable');
+//var Draggable = require('ti.draggable');
 
 var about = 
 {
@@ -24,7 +24,7 @@ var about =
 			opacity: 0.6
 		});
 
-		var mainBody = Draggable.createView
+		var mainBody = Ti.UI.createView
 		({
 			top: config.MENU_BUTTON_TOP_MARGIN,
 			height: config.ABOUT_HEIGHT,
@@ -34,13 +34,76 @@ var about =
 			layout: "vertical"
 		});
 
-		mainBody.draggable.setConfig
+		var testHeader = Ti.UI.createView
 		({
-		  minLeft: "25%", //( "0%" + ( 105 - config.MODAL_WIDTH ) ),
-		  maxLeft: "25%", //( "0%" + ( 105 - config.MODAL_WIDTH ) ),
-		  //minTop: config.DISP_HEIGHT * config.ABOUT_HEIGHT,
-		  maxTop: "15%"
+			top: "5%",
+			height:"30%",
+			width:"100%",
+			backgroundColor: "#AAFFAA",
+			layout: "vertical"
 		});
+
+		var testLabel = Ti.UI.createLabel
+		({
+			top: "5%",
+			text: "This is a test",
+			height:"auto",
+			width:"auto",
+			font: config.ALTERNATIVE_FONT,
+			textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER
+		}); 
+
+
+
+		// var scrollableView = Ti.UI.createScrollableView
+		// ({
+		// 	views: [ mainBody ],
+		// 	layout: "vertical",
+		// 	scrollingEnabled: true,
+		// });
+
+		var list = Ti.UI.createListSection({});
+
+		var listItems = 
+		[
+			{properties: { title: 'test1'}},
+			{properties: { title: 'test2'}},
+			{properties: { title: 'test3'}},
+			{properties: { title: 'test1'}},
+			{properties: { title: 'test2'}},
+			{properties: { title: 'test3'}},
+			{properties: { title: 'test1'}},
+			{properties: { title: 'test2'}},
+			{properties: { title: 'test3'}},
+			{properties: { title: 'test1'}},
+			{properties: { title: 'test2'}},
+			{properties: { title: 'test3'}},
+			{properties: { title: 'test1'}},
+			{properties: { title: 'test2'}},
+			{properties: { title: 'test3'}},
+			{properties: { title: 'test1'}},
+			{properties: { title: 'test2'}},
+			{properties: { title: 'test3'}},
+			{properties: { title: 'test1'}},
+			{properties: { title: 'test2'}},
+			{properties: { title: 'test3'}},
+		];
+
+		list.setItems( listItems );
+
+		var listView = Ti.UI.createListView
+		({
+			headerView: mainBody,
+			sections: [ list ],
+		});
+
+		// mainBody.draggable.setConfig
+		// ({
+		//   minLeft: "25%", //( "0%" + ( 105 - config.MODAL_WIDTH ) ),
+		//   maxLeft: "25%", //( "0%" + ( 105 - config.MODAL_WIDTH ) ),
+		//   //minTop: config.DISP_HEIGHT * config.ABOUT_HEIGHT,
+		//   maxTop: "15%"
+		// });
 		
 		mainBody.addEventListener('click',function()
 		{
@@ -77,7 +140,10 @@ var about =
 
 		modal.add( background );
 
-		modal.add( mainBody );
+		// modal.add( mainBody );
+
+		modal.add( listView );
+
 	},
 
 	getContributorsTextString: function()

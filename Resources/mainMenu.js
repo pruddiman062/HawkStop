@@ -26,13 +26,13 @@ var mainMenu = {
 			top: config.MENU_BUTTON_TOP_MARGIN
 		} );
 		
+		this.container.add( this.addButton( "HawkStop", 3, config.MENU_TITLE_HEIGHT, this.container ));
+
 		this.container.add( this.addButton( "Bristol", 0, config.MENU_BUTTON_HEIGHT, this.container ));
 
 		this.container.add( this.addButton( "Campus", 1, config.MENU_BUTTON_HEIGHT, this.container ));
 
 		this.container.add( this.addButton( "Bay Point", 2, config.MENU_BUTTON_HEIGHT, this.container ));
-
-		this.container.add( this.addButton( "About", 3, config.MENU_ABOUT_HEIGHT, this.container ));
 		
 		Ti.UI.currentWindow.add( this.container );
 
@@ -92,17 +92,18 @@ var mainMenu = {
 
 		button.addEventListener( 'click', function( e ) 
 		{
-				if( buttonText === "About" )
+				if( buttonText === "HawkStop" )
 				{
-					var ModalWindow = Ti.UI.createWindow
-					({
-						url:'about.js',
-						backgroundColor: 'transparent',
-						opacity: 1.0,
-						navBarHidden: true
-					});
-
-					ModalWindow.open(); 
+					//LEAVING OUT MENU FOR SHOWING APP AT TABLE
+					// var ModalWindow = Ti.UI.createWindow
+					// ({
+						// url:'about.js',
+						// backgroundColor: 'transparent',
+						// opacity: 1.0,
+						// navBarHidden: true
+					// });
+// 
+					// ModalWindow.open(); 
 				}
 				else
 				{
