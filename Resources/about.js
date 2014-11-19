@@ -17,168 +17,103 @@ var about =
 
 	init: function()
 	{
-
 		var background = Ti.UI.createView
 		({
 			backgroundColor:'#000000',
-			opacity: 0.6
+			opacity: 0.6,
 		});
-
-		var mainBody = Ti.UI.createView
-		({
-			top: config.MENU_BUTTON_TOP_MARGIN,
-			height: config.ABOUT_HEIGHT,
-			width: config.MODAL_WIDTH,
-			backgroundColor: config.MODAL_BACKGROUND_COLOR,
-			borderRadius: config.MODAL_BORDER_RADIUS,
-			layout: "vertical"
-		});
-
-		var testHeader = Ti.UI.createView
-		({
-			top: "5%",
-			height:"30%",
-			width:"100%",
-			backgroundColor: "#AAFFAA",
-			layout: "vertical"
-		});
-
-		var testLabel = Ti.UI.createLabel
-		({
-			top: "5%",
-			text: "This is a test",
-			height:"auto",
-			width:"auto",
-			font: config.ALTERNATIVE_FONT,
-			textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER
-		}); 
-
-
-
-		// var scrollableView = Ti.UI.createScrollableView
-		// ({
-		// 	views: [ mainBody ],
-		// 	layout: "vertical",
-		// 	scrollingEnabled: true,
-		// });
 
 		var list = Ti.UI.createListSection({});
 
 		var listItems = 
 		[
-			{properties: { title: 'test1'}},
-			{properties: { title: 'test2'}},
-			{properties: { title: 'test3'}},
-			{properties: { title: 'test1'}},
-			{properties: { title: 'test2'}},
-			{properties: { title: 'test3'}},
-			{properties: { title: 'test1'}},
-			{properties: { title: 'test2'}},
-			{properties: { title: 'test3'}},
-			{properties: { title: 'test1'}},
-			{properties: { title: 'test2'}},
-			{properties: { title: 'test3'}},
-			{properties: { title: 'test1'}},
-			{properties: { title: 'test2'}},
-			{properties: { title: 'test3'}},
-			{properties: { title: 'test1'}},
-			{properties: { title: 'test2'}},
-			{properties: { title: 'test3'}},
-			{properties: { title: 'test1'}},
-			{properties: { title: 'test2'}},
-			{properties: { title: 'test3'}},
+			{properties: 	{ 
+								title: config.DROP_DOWN_MENU_ITEMS[0],
+								font: config.ALTERNATIVE_FONT,
+							}},
+			{properties: 	{ 
+								title: config.DROP_DOWN_MENU_ITEMS[1],
+								font: config.ALTERNATIVE_FONT,
+							}},
+			{properties: 	{ 
+								title: config.DROP_DOWN_MENU_ITEMS[2],
+								font: config.ALTERNATIVE_FONT,
+							}},
+			{properties: 	{ 
+								title: config.DROP_DOWN_MENU_ITEMS[3],
+								font: config.ALTERNATIVE_FONT,
+							}},
 		];
 
 		list.setItems( listItems );
 
 		var listView = Ti.UI.createListView
 		({
-			headerView: mainBody,
+			width:"45%",
+			height:"40%",
+			top: config.MENU_BUTTON_TOP_MARGIN,
+			left: "0%",
 			sections: [ list ],
 		});
-
-		// mainBody.draggable.setConfig
-		// ({
-		//   minLeft: "25%", //( "0%" + ( 105 - config.MODAL_WIDTH ) ),
-		//   maxLeft: "25%", //( "0%" + ( 105 - config.MODAL_WIDTH ) ),
-		//   //minTop: config.DISP_HEIGHT * config.ABOUT_HEIGHT,
-		//   maxTop: "15%"
-		// });
 		
-		mainBody.addEventListener('click',function()
+		listView.addEventListener('itemclick', function( e ) 
+		{
+			var win = Ti.UI.createWindow
+			({
+				url:'aboutMenuItem.js',
+				itemIndex: e.itemIndex,
+			});
+			
+			win.open();
+
+			//modal.close();
+		});
+
+		background.addEventListener('click',function()
 		{
 			modal.close();
 		});
 
-		var howToText = Ti.UI.createLabel
-		({
-			top: config.MENU_BUTTON_TOP_MARGIN,
-			text: config.HOW_TO_TEXT,
-			color: config.DEFAULT_FONT_COLOR,
-			height:"auto",
-			width:"auto",
-			font: config.ALTERNATIVE_FONT,
-			textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER
-		});
-
-		var contributorsTextString = this.getContributorsTextString();
-
-		var contributorsText = Ti.UI.createLabel
-		({
-			top: config.MENU_BUTTON_TOP_MARGIN,
-			text: contributorsTextString,
-			color: config.DEFAULT_FONT_COLOR,
-			height:"auto",
-			width:"auto",
-			font: config.ALTERNATIVE_FONT,
-			textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER
-		});
-
-		mainBody.add( howToText );
-
-		mainBody.add( contributorsText );
-
 		modal.add( background );
-
-		// modal.add( mainBody );
 
 		modal.add( listView );
 
 	},
 
-	getContributorsTextString: function()
+	//returns the width of a string in pixels
+	//to be used to know how big a string will be on the screen
+	getStringPixelLength: function( string, font )
 	{
+		var tempString = Ti.UI.createLabel
+		({
+			text: string,
+			font: font,
+		});
+
+		Ti.API.info( "widthWord:" + tempString.getWidth() );
+
+		return tempString.getWidth();
+	},
+
+	//does the same as getStringPixelLength but only returns
+	//the length of the longest one
+	getLongestString: function( arrayOfStrings, font )
+	{
+		var largestWidth = 0;
+		var testWidth;
 		var index;
-		var stringToReturn = "- App built by -\n- RWU Technical Entrepreneurs -\n- (Tech-Es) -\n";
 
-		stringToReturn += "\n- Collaborators -\n";
-
-
-		//Project Leads
-		stringToReturn += "\n- Project Leads -\n";
-
-		for( index = 0; index < config.PROJECT_LEADS.length; index++ )
+		for( index = 0; index < arrayOfStrings.length; index++ )
 		{
-			stringToReturn += config.PROJECT_LEADS[index] + "\n";
+			testWidth = this.getStringPixelLength( arrayOfStrings[index], font );
+
+			if( testWidth > largestWidth )
+			{
+				largestWidth = testWidth;
+			}
 		}
 
-		//Club Officers
-		stringToReturn += "\n- Club Officers -\n";
-
-		for( index = 0; index < config.CLUB_OFFICERS.length; index++ )
-		{
-			stringToReturn += config.CLUB_OFFICERS[index] + "\n";
-		}
-
-		//Collaborators
-		stringToReturn += "\n- Supporting Club Members -\n";
-
-		for( index = 0; index < config.SUPPORTING_CLUB_MEMBERS.length; index++ )
-		{
-			stringToReturn += config.SUPPORTING_CLUB_MEMBERS[index] + "\n";
-		}
-
-		return stringToReturn;
+		return largestWidth;
 	}
 };
 about.init();

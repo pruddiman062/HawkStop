@@ -7,6 +7,15 @@
  * 
  */
 
+//getting our custom fonts
+var customFont = 'Santa Fe LET'; // use the friendly-name on iOS
+if(Ti.Platform.osname=='android') {
+   // on Android, use the "base name" of the file (name without extension)
+   customFont = 'SantaFeLetPlain';
+} 
+
+//Ti.API.info(customFont);
+
 exports.HS_RESOURCES = ""+Ti.Filesystem.resourcesDirectory;
 exports.HS_ASSETS = exports.HS_RESOURCES + 'assets';
 
@@ -34,25 +43,29 @@ if(Ti.Platform.osname == 'mobileweb')
 //Remember to tell a programmer if you want to use custom fonts
 //because we have to do some fancy shit!
 exports.DEFAULT_FONT = 	{ 
-							fontStyle: "sans",
+							fontStyle: customFont,
 							fontSize: "30%", 
 							fontWeight: "bold"
 						};
 exports.ALTERNATIVE_FONT = 	{ 
-								fontStyle: "sans-serif",
+								fontStyle: customFont,
 								fontSize: "20%", 
 								fontWeight: "normal"
 							};
 exports.SCHEDULE_FONT = 	{ 
-							fontStyle: "sans",
+							fontStyle: customFont,
 							fontSize: "20%", 
 							fontWeight: "bold"
 						};
 exports.DEFAULT_FONT_COLOR = "#000000";
 exports.ALTERNATIVE_FONT_COLOR = "#000000";
 
+
+//App Menu General Settings
+exports.MENU_FULL_BACK_COLOR = "#0d1826";
+
 //App Menu Button Settings
-exports.MENU_BG_COLOR = ['#EEFFEE','#FFEEEE','#EEEEFF', '#FFD700' ];
+exports.MENU_BG_COLOR = ['rgba(255,238,238,0)','rgba(238,255,238,0)','rgba(238,238,255,0)','rgba(255,215,0,1)' ];
 exports.MENU_BORDER_COLOR = '#000000';
 exports.MENU_BORDER_WIDTH = '2px';
 exports.MENU_BORDER_RADIUS = '15px';
@@ -63,11 +76,11 @@ exports.MENU_BUTTON_TOP_MARGIN = "5%";
 
 //App Menu Icon Settings
 exports.MENU_BUTTON_ICON_PATH = "/images/menuIcon";
-exports.MENU_ICON_SCALE = "15%";
-exports.MENU_ICON_INDENT = "65%";
+exports.MENU_ICON_SCALE = "50%";
+exports.MENU_ICON_INDENT = "50%";
 
 //App Menu Text Settings
-exports.MENU_LABEL_INDENT = "15%";
+exports.MENU_LABEL_INDENT = "5%";
 
 //Shuttle Stop Icon Size
 exports.STOP_Y_SIZE = 60;
@@ -94,9 +107,10 @@ exports.DATA_URI = "http://shuttleapp.patrickruddiman.com/xml.php";
 exports.LOCAL_XML = exports.HS_ASSETS+'/feed.xml';
 
 //STRINGS
-exports.HOW_TO_TEXT = 	"Hello! Welcome to HawkStop!" +
-						"Simply tap the map you want to access," +
-						"then tap the stop you want times from.";
+exports.DROP_DOWN_MENU_ITEMS = [ "How To Use", "Settings", "About", "Credits" ];
+exports.HOW_TO_TEXT = 	["Hello! Welcome to HawkStop!",
+						"Simply tap the map you want to access.",
+						"Then tap the stop you want times from."];
 exports.PROJECT_LEADS = [ "Design Team: Karly Rust","App Team: Dan Barron","Business Team: Dylan Jann" ];
 exports.CLUB_OFFICERS = [ 	"President: Willem Delventhal", "Vice President: Patrick Ruddiman", "Secretary: Chris Wade",
 							"Treasurer: Alex Quaglieri", "Social Media Coordinator: Shayna Moran" ];

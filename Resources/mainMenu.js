@@ -17,13 +17,20 @@ var mainMenu = {
 	//init function handles building the buttons and displaying the view.
 	init: function()
 	{	
+		var background = Ti.UI.createView
+		({
+			backgroundColor: config.MENU_FULL_BACK_COLOR
+		});
+
+		Ti.UI.currentWindow.add( background );
+
 		this.container = Ti.UI.createView
 		( {
 			width: config.DISP_WIDTH,
 			height: config.DISP_HEIGHT,
 			borderColor: "black",
 			layout: 'vertical',
-			top: config.MENU_BUTTON_TOP_MARGIN
+			top: config.MENU_BUTTON_TOP_MARGIN,
 		} );
 		
 		this.container.add( this.addButton( "HawkStop", 3, config.MENU_TITLE_HEIGHT, this.container ));
@@ -48,15 +55,15 @@ var mainMenu = {
 			width: config.MENU_BUTTON_WIDTH,
 			height: buttonHeight,
 			backgroundColor: config.MENU_BG_COLOR[ iconID ],
-			borderColor: config.MENU_BORDER_COLOR,
-			borderWidth: config.MENU_BORDER_WIDTH,
-			borderRadius: config.MENU_BORDER_RADIUS,
+			// borderColor: config.MENU_BORDER_COLOR,
+			// borderWidth: config.MENU_BORDER_WIDTH,
+			// borderRadius: config.MENU_BORDER_RADIUS,
 		});
 
 		//add a label
 		var label = Ti.UI.createLabel
 		({
-			color: config.DEFAULT_FONT_COLOR,
+			color: "#FFFFFF",
 			height:"auto",
 			width:"auto",
 			font: config.DEFAULT_FONT,
@@ -94,16 +101,15 @@ var mainMenu = {
 		{
 				if( buttonText === "HawkStop" )
 				{
-					//LEAVING OUT MENU FOR SHOWING APP AT TABLE
-					// var ModalWindow = Ti.UI.createWindow
-					// ({
-						// url:'about.js',
-						// backgroundColor: 'transparent',
-						// opacity: 1.0,
-						// navBarHidden: true
-					// });
-// 
-					// ModalWindow.open(); 
+					var ModalWindow = Ti.UI.createWindow
+					({
+						url:'about.js',
+						backgroundColor: 'transparent',
+						opacity: 1.0,
+						navBarHidden: true
+					});
+
+					ModalWindow.open(); 
 				}
 				else
 				{

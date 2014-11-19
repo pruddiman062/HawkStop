@@ -105,7 +105,7 @@ var region = {
 		});
 		
 		view.add(close);
-		
+
 		return view;
 	},
 	addStops: function(regionid, stopid, x, y)
