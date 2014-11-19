@@ -38,8 +38,14 @@ switch(location)
 var region = {
 	stops: [],
 	container: null,
-	init: function(){
-		this.container = Draggable.createView({
+	scaleFactor: null,
+
+	init: function()
+	{
+		this.scaleFactor = 1;
+
+		this.container = Draggable.createView
+		({
 			borderColor: "black",
 			layout: 'composite',
 			height: 1178,
@@ -47,7 +53,9 @@ var region = {
 			top:0,
 			left:0
 		});
-		this.container.draggable.setConfig({
+
+		this.container.draggable.setConfig
+		({
 		  minLeft: -1302+config.DISP_WIDTH,
 		  maxLeft: 0,
 		  minTop: -1178+config.DISP_HEIGHT-((config.DISP_HEIGHT/10)/2),
@@ -59,6 +67,7 @@ var region = {
 		var data = require('/lib/data');
 		var AppData = new data();
 		var stops = AppData.getStops(regionid);
+
 		for(i = 0; i<stops.length; i++)
 		{
 			if(stops[i].Long != "" && stops[i].Lat !="")
@@ -66,11 +75,13 @@ var region = {
 				this.addStops(regionid, stops[i].Id, stops[i].x, stops[i].y);
 			}
 		}
-		
+
 		regionWindow.add(this.container);
+
 		regionWindow.add(this.buildControlBar());
 		//this.clean();
 	},
+
 	buildMap: function()
 	{
 		var mapView = Ti.UI.createImageView({
@@ -80,6 +91,7 @@ var region = {
 		});
 		return mapView;
 	},
+
 	buildControlBar: function()
 	{
 		var view = Ti.UI.createView({
@@ -103,11 +115,63 @@ var region = {
 		close.addEventListener('touchend', function(e){
 			Ti.UI.currentWindow.close();
 		});
+
+		//ZOOMING IN AND OUT WOOO!!!
+		var zoomIn = Ti.UI.createImageView
+		({
+			image:config.HS_ASSETS+'/images/in-icon.png',
+			top:5,
+			left: 0,
+			height:(config.DISP_HEIGHT/10)/2,
+			width: (config.DISP_HEIGHT/10)/2
+		});
 		
-		view.add(close);
+		zoomIn.addEventListener('touchend', function(e)
+		{
+			//Here's hte problem. It claims that the imageView has no zoomIn function
+			//when that function is clearly definied below
+			//this means it must be considering itself a whole separate object
+			//but I have no idea how to circumvent that
+			
+			// this.zoomIn();
+		});
+
+		var zoomOut = Ti.UI.createImageView
+		({
+			image:config.HS_ASSETS+'/images/out-icon.png',
+			top:5,
+			left: config.DISP_HEIGHT/10,
+			height:(config.DISP_HEIGHT/10)/2,
+			width: (config.DISP_HEIGHT/10)/2
+		});
+		
+		zoomOut.addEventListener('touchend', function(e)
+		{
+		});
+		
+		view.add( close );
+
+		view.add( zoomIn );
+
+		view.add( zoomOut );
 
 		return view;
 	},
+
+	zoomIn: function()
+	{
+		Ti.API.info("Zoom In: I was touched!");
+		Ti.API.info(this.scaleFactor + " " + config.MAX_ZOOM_IN);
+
+		if( this.scaleFactor > config.MAX_ZOOM_IN )
+		{
+			Ti.API.info("Zoom In: I should've zoomed in");
+			this.scaleFactor -= config.ZOOM_AMOUNT;
+			this.container.width *= (1 - config.ZOOM_AMOUNT);
+			this.container.height *= (1 - config.ZOOM_AMOUNT);
+		}
+	},
+
 	addStops: function(regionid, stopid, x, y)
 	{
 		
@@ -119,8 +183,10 @@ var region = {
 			left: x-(config.STOP_X_SIZE/2)
 		});
 		
-		view.addEventListener('click', function(){
-			var ModalWindow = Ti.UI.createWindow({
+		view.addEventListener('click', function()
+		{
+			var ModalWindow = Ti.UI.createWindow
+			({
 				url:'schedule.js',
 				stopid: stopid,
 				region: regionid,

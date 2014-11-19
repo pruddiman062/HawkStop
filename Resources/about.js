@@ -30,18 +30,22 @@ var about =
 			{properties: 	{ 
 								title: config.DROP_DOWN_MENU_ITEMS[0],
 								font: config.ALTERNATIVE_FONT,
+								color: config.DEFAULT_FONT_COLOR,
 							}},
 			{properties: 	{ 
 								title: config.DROP_DOWN_MENU_ITEMS[1],
 								font: config.ALTERNATIVE_FONT,
+								color: config.DEFAULT_FONT_COLOR,
 							}},
 			{properties: 	{ 
 								title: config.DROP_DOWN_MENU_ITEMS[2],
 								font: config.ALTERNATIVE_FONT,
+								color: config.DEFAULT_FONT_COLOR,
 							}},
 			{properties: 	{ 
 								title: config.DROP_DOWN_MENU_ITEMS[3],
 								font: config.ALTERNATIVE_FONT,
+								color: config.DEFAULT_FONT_COLOR,
 							}},
 		];
 
@@ -54,6 +58,8 @@ var about =
 			top: config.MENU_BUTTON_TOP_MARGIN,
 			left: "0%",
 			sections: [ list ],
+			backgroundColor: config.MODAL_BACKGROUND_COLOR,
+			separatorColor: config.DEFAULT_FONT_COLOR
 		});
 		
 		listView.addEventListener('itemclick', function( e ) 

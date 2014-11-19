@@ -54,7 +54,15 @@ var mainMenu = {
 		({
 			width: config.MENU_BUTTON_WIDTH,
 			height: buttonHeight,
+
+		});
+
+		var background = Ti.UI.createView
+		({
+			width: "100%",
+			height: "100%",
 			backgroundColor: config.MENU_BG_COLOR[ iconID ],
+			opacity: config.MENU_BG_OPACITY[ iconID ],
 			// borderColor: config.MENU_BORDER_COLOR,
 			// borderWidth: config.MENU_BORDER_WIDTH,
 			// borderRadius: config.MENU_BORDER_RADIUS,
@@ -90,6 +98,8 @@ var mainMenu = {
 			height: "100%",
 			backgroundColor: "transparent"
 		});
+
+		container.add( background );
 
 		container.add( label );
 

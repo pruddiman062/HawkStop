@@ -94,6 +94,59 @@ var aboutMenuItem =
 		return tempLabel;
 	},
 
+	createBasicList: function( title, arrayOfListItems )
+	{
+		var index;
+
+		var list = Ti.UI.createListSection({});
+
+		var listItems = [];
+
+		var stringToAdd;
+
+		//hopefully dynamically making you a list
+		for( index = 0; index < arrayOfListItems.length; index++ )
+		{
+			stringToAdd = arrayOfListItems[ ( index ) ];
+
+			listItems.push( {properties: 	{ 
+												title:stringToAdd,
+												font: config.ALTERNATIVE_FONT,
+												color: config.DEFAULT_FONT_COLOR,
+											} } );
+		}
+
+		list.setItems( listItems );
+
+		var totalView = Ti.UI.createView
+		({
+			height:"auto",
+			width:"100%",
+			layout: "vertical",
+		});
+
+		var headerLabel = this.createBasicLabel( title );
+
+		var listView = Ti.UI.createListView
+		({
+			width:"100%",
+			height:"100%",
+			sections: [ list ],
+			separatorColor: config.DEFAULT_FONT_COLOR
+		});
+
+		listView.addEventListener('itemclick', function( e ) 
+		{
+			modal.close();
+		});
+
+		totalView.add( headerLabel );
+
+		totalView.add( listView );
+
+		return totalView;
+	},
+
 	createHowTo: function()
 	{
 		//regular views
@@ -165,41 +218,10 @@ var aboutMenuItem =
 		var view3 = this.createBasicView();
 
 		//Project Leads
-		var stringToReturn = "";
-		stringToReturn += "\n- Project Leads -\n";
 
-		for( index = 0; index < config.PROJECT_LEADS.length; index++ )
-		{
-			stringToReturn += config.PROJECT_LEADS[index] + "\n";
-		}
-
-		var label1 = this.createBasicLabel( stringToReturn );
-
-		//Club Officers
-		stringToReturn = "";
-		stringToReturn += "\n- Club Officers -\n";
-
-		for( index = 0; index < config.CLUB_OFFICERS.length; index++ )
-		{
-			stringToReturn += config.CLUB_OFFICERS[index] + "\n";
-		}
-
-		var label2 = this.createBasicLabel( stringToReturn );
-
-		//Collaborators
-		stringToReturn = "";
-		stringToReturn += "\n- Supporting Club Members -\n";
-
-		for( index = 0; index < config.SUPPORTING_CLUB_MEMBERS.length; index++ )
-		{
-			stringToReturn += config.SUPPORTING_CLUB_MEMBERS[index] + "\n";
-		}
-
-		var label3 = this.createBasicLabel( stringToReturn );
-
-		view1.add( label1 );
-		view2.add( label2 );
-		view3.add( label3 );
+		view1.add( this.createBasicList( "Project Leads", config.PROJECT_LEADS ) );
+		view2.add( this.createBasicList( "Club Officers", config.CLUB_OFFICERS ) );
+		view3.add( this.createBasicList( "Supporting Club Members", config.SUPPORTING_CLUB_MEMBERS ) );
 
 		//Scrollable view
 		var scrollView = Ti.UI.createScrollableView

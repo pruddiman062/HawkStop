@@ -65,7 +65,9 @@ exports.ALTERNATIVE_FONT_COLOR = "#000000";
 exports.MENU_FULL_BACK_COLOR = "#0d1826";
 
 //App Menu Button Settings
-exports.MENU_BG_COLOR = ['rgba(255,238,238,0)','rgba(238,255,238,0)','rgba(238,238,255,0)','rgba(255,215,0,1)' ];
+exports.MENU_BG_COLOR = ['#FFEEEE','#EEFFEE','#EEEEFF','#FFD700' ];
+//exports.MENU_BG_COLOR = ['rgba(255,238,238,0)','rgba(238,255,238,0)','rgba(238,238,255,0)','rgba(255,215,0,1)' ];
+exports.MENU_BG_OPACITY = [ 0, 0, 0, 1 ];
 exports.MENU_BORDER_COLOR = '#000000';
 exports.MENU_BORDER_WIDTH = '2px';
 exports.MENU_BORDER_RADIUS = '15px';
@@ -76,8 +78,8 @@ exports.MENU_BUTTON_TOP_MARGIN = "5%";
 
 //App Menu Icon Settings
 exports.MENU_BUTTON_ICON_PATH = "/images/menuIcon";
-exports.MENU_ICON_SCALE = "50%";
-exports.MENU_ICON_INDENT = "50%";
+exports.MENU_ICON_SCALE = "40%";
+exports.MENU_ICON_INDENT = "55%";
 
 //App Menu Text Settings
 exports.MENU_LABEL_INDENT = "5%";
@@ -89,6 +91,11 @@ exports.ICON_SIZE_UNITS = 'px';
 
 //about page settings
 exports.ABOUT_HEIGHT = '30%';
+
+//Zoom Settings
+exports.ZOOM_AMOUNT = 0.25;
+exports.MAX_ZOOM_IN = 1;
+exports.MAX_ZOOM_OUT = 2;
 
 //Schedule modal settings
 exports.MODAL_HEIGHT = '25%';
@@ -113,7 +120,7 @@ exports.HOW_TO_TEXT = 	["Hello! Welcome to HawkStop!",
 						"Then tap the stop you want times from."];
 exports.PROJECT_LEADS = [ "Design Team: Karly Rust","App Team: Dan Barron","Business Team: Dylan Jann" ];
 exports.CLUB_OFFICERS = [ 	"President: Willem Delventhal", "Vice President: Patrick Ruddiman", "Secretary: Chris Wade",
-							"Treasurer: Alex Quaglieri", "Social Media Coordinator: Shayna Moran" ];
+							"Treasurer: Alex Quaglieri", "Media Lead: Shayna Moran" ];
 exports.SUPPORTING_CLUB_MEMBERS = [ "First Last", "First Last", "First Last", "First Last", "First Last", "First Last",
 									"First Last", "First Last", "First Last", "First Last", "First Last", "First Last" ];
 
