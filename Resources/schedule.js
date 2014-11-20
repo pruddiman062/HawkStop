@@ -19,28 +19,31 @@ var schedule = {
 	stopId: stopid,
 	regionId: regionid,
 	init: function(){
-		
-		var mView = Ti.UI.createView
-		({
-			backgroundColor:'#000000',
-			opacity: .6
-		});
-		
+			
 		var view = Ti.UI.createView
 		({
+			top: 0,
+			left: 0,
 			height: config.MODAL_HEIGHT,
 			width: config.MODAL_WIDTH,
-			backgroundColor: config.MODAL_BACKGROUND_COLOR,
-			borderRadius: config.MODAL_BORDER_RADIUS,
-			layout: "vertical"
+			backgroundColor: config.MODAL_BACKGROUND_COLOR
 		});
 		
-		view.addEventListener('click',function()
-		{
-			modal.close();
+		var close = Ti.UI.createImageView({
+			image:config.HS_ASSETS+'/images/close-icon.jpg',
+			top:5,
+			left: config.DISP_WIDTH-((config.DISP_HEIGHT/10)/2),
+			height:(config.DISP_HEIGHT/10)/2,
+			width: (config.DISP_HEIGHT/10)/2
+		});
+		
+		close.addEventListener('touchend', function(e){
+			Ti.UI.currentWindow.close();
 		});
 		
 		var schedule = this.getSchedule();
+		
+		Ti.API.info(schedule[2]);
 		
 		currColor = "";
 		if(schedule[0] > 6 && !schedule[2])
@@ -63,6 +66,7 @@ var schedule = {
 		{
 			var label0 = Ti.UI.createLabel
 			({
+				top:5,
 				text:"The shuttle arrives in:",
 				color: config.TIME_COLOR_4,
 				height:"auto",
@@ -73,6 +77,7 @@ var schedule = {
 			
 			var label1 = Ti.UI.createLabel
 			({
+				top:25,
 				text:schedule[0]+" minutes",
 				color: currColor,
 				height:"auto",
@@ -83,19 +88,10 @@ var schedule = {
 			view.add(label0);
 			view.add(label1);
 		}
-		var label2 = Ti.UI.createLabel
-		({
-			text:"The following shuttle arrives at: "+schedule[1],
-			color: config.TIME_COLOR_4,
-			height:"auto",
-			width:"auto",
-			font: config.SCHEDULE_FONT,
-			textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER
-		});
-
-		view.add(label2);
-		modal.add(mView);
+		view.add(close);
+		var lView = this.getListOfStops(schedule[1]);
 		modal.add(view);
+		modal.add(lView);
 	},
 	getSchedule: function()
 	{
@@ -109,6 +105,7 @@ var schedule = {
 		var time;
 		var tSplit;
 		var last = true;
+		var stopIndex;
 		
 		var schedule = AppData.getSchedule(this.regionId,this.stopId);
 		
@@ -124,8 +121,8 @@ var schedule = {
 			{
 				if(sMinutes >= curMinutes)
 				{
-					ETA = (sMinutes-curMinutes);
-					NextStop = schedule[(i+1)].time;
+					ETA = (parseInt(sMinutes)-curMinutes);
+					stopIndex = i;
 					last = false;
 					break;
 				}
@@ -133,51 +130,53 @@ var schedule = {
 			if(sHour == curHours+1)
 			{
 				ETA = (parseInt(sMinutes)+(60-curMinutes));
-				if(i+1 == schedule.length)
-				{
-					NextStop = schedule[0].time;	
-				}
-				else
-				{
-					NextStop = schedule[(i+1)].time;
-				}
+				stopIndex = i;
 				last = false;
 				break;
 			}
 		}
 		
-		tSplit = NextStop.split(':');
+		return [ETA, stopIndex, last];
 		
-		var hour = tSplit[0];
-		var minute = tSplit[1];
-		var suffix;
 		
-		if(hour > 12)
+	},
+	getListOfStops: function(index){
+		var schedule = AppData.getSchedule(this.regionId,this.stopId);
+		var listView = Ti.UI.createListView({
+				backgroundColor: "dark blue"
+			});
+		var sections = [];
+		var dataset = [];
+		var stopSection = Ti.UI.createListSection({
+				headerTitle: 'Remaining Schedule'
+			});
+		
+		for(i = (index+1); i<schedule.length; i++)
 		{
-			hour = hour-12;
-			suffix = "PM";
-		}
-		else
-		{
-			if(hour = 12)
+			
+			var time = schedule[i].time;
+			var tSplit = time.split(':');
+			
+			var sHour = (tSplit[0]);
+			var sMinutes = (tSplit[1]);
+			
+			
+			if(sHour > 12)
 			{
-				suffix = "PM";
+				time = (parseInt(sHour)-12)+":"+sMinutes+" PM";
 			}
-			suffix = "AM";
+			else
+			{
+				time = sHour+":"+sMinutes+" AM";
+			}
+			
+			dataset.push({properties: { title: time}});
 		}
 		
-		if(last)
-		{
-			NextStop = schedule[0].time + " AM";
-		}
-		else
-		{
-			NextStop = hour+":"+minute+" "+suffix;
-		}
-		
-		return [ETA, NextStop, last];
-		
-		
+			stopSection.setItems(dataset);
+			sections.push(stopSection);
+			listView.sections = sections;
+			return listView;
 	}
 };
 schedule.init();

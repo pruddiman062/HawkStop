@@ -98,10 +98,9 @@ exports.MAX_ZOOM_IN = 1;
 exports.MAX_ZOOM_OUT = 2;
 
 //Schedule modal settings
-exports.MODAL_HEIGHT = '25%';
-exports.MODAL_WIDTH = '85%';
+exports.MODAL_HEIGHT = '15%';
+exports.MODAL_WIDTH = '100%';
 exports.MODAL_BACKGROUND_COLOR = '#FFFFFF';
-exports.MODAL_BORDER_RADIUS = '15px';
 
 //Schedule modal Color
 exports.TIME_COLOR_1 = "#00FF00";

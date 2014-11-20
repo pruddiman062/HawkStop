@@ -198,11 +198,11 @@ var region = {
 			var ModalWindow = Ti.UI.createWindow
 			({
 				url:'schedule.js',
+				layout: "vertical",
+				font: config.DEFAULT_FONT,
+				color: config.DEFAULT_FONT_COLOR,
 				stopid: stopid,
-				region: regionid,
-				backgroundColor: 'transparent',
-				opacity: 1.0,
-				navBarHidden: true
+				region: regionid
 			});
 			ModalWindow.open(); 
 		});
