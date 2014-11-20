@@ -128,12 +128,7 @@ var region = {
 		
 		zoomInButton.addEventListener('touchend', function(e)
 		{
-			//Here's hte problem. It claims that the imageView has no zoomIn function
-			//when that function is clearly definied below
-			//this means it must be considering itself a whole separate object
-			//but I have no idea how to circumvent that
-
-			// this.zoomIn();
+			region.zoomIn();
 		} );
 
 		var zoomOutButton = Ti.UI.createImageView
@@ -147,6 +142,7 @@ var region = {
 		
 		zoomOutButton.addEventListener('touchend', function(e)
 		{
+			region.zoomOut();
 		});
 		
 		view.add( close );
@@ -167,6 +163,20 @@ var region = {
 		{
 			Ti.API.info("Zoom In: I should've zoomed in");
 			this.scaleFactor -= config.ZOOM_AMOUNT;
+			this.container.width *= (1 + config.ZOOM_AMOUNT);
+			this.container.height *= (1 + config.ZOOM_AMOUNT);
+		}
+	},
+
+	zoomOut: function()
+	{
+		Ti.API.info("Zoom Out: I was touched!");
+		Ti.API.info(this.scaleFactor + " " + config.MAX_ZOOM_IN);
+
+		if( this.scaleFactor < config.MAX_ZOOM_OUT )
+		{
+			Ti.API.info("Zoom Out: I should've zoomed out");
+			this.scaleFactor += config.ZOOM_AMOUNT;
 			this.container.width *= (1 - config.ZOOM_AMOUNT);
 			this.container.height *= (1 - config.ZOOM_AMOUNT);
 		}
