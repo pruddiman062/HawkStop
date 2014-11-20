@@ -117,7 +117,7 @@ var region = {
 		});
 
 		//ZOOMING IN AND OUT WOOO!!!
-		var zoomIn = Ti.UI.createImageView
+		var zoomInButton = Ti.UI.createImageView
 		({
 			image:config.HS_ASSETS+'/images/in-icon.png',
 			top:5,
@@ -126,17 +126,17 @@ var region = {
 			width: (config.DISP_HEIGHT/10)/2
 		});
 		
-		zoomIn.addEventListener('touchend', function(e)
+		zoomInButton.addEventListener('touchend', function(e)
 		{
 			//Here's hte problem. It claims that the imageView has no zoomIn function
 			//when that function is clearly definied below
 			//this means it must be considering itself a whole separate object
 			//but I have no idea how to circumvent that
-			
-			// this.zoomIn();
-		});
 
-		var zoomOut = Ti.UI.createImageView
+			// this.zoomIn();
+		} );
+
+		var zoomOutButton = Ti.UI.createImageView
 		({
 			image:config.HS_ASSETS+'/images/out-icon.png',
 			top:5,
@@ -145,15 +145,15 @@ var region = {
 			width: (config.DISP_HEIGHT/10)/2
 		});
 		
-		zoomOut.addEventListener('touchend', function(e)
+		zoomOutButton.addEventListener('touchend', function(e)
 		{
 		});
 		
 		view.add( close );
 
-		view.add( zoomIn );
+		view.add( zoomInButton );
 
-		view.add( zoomOut );
+		view.add( zoomOutButton );
 
 		return view;
 	},
