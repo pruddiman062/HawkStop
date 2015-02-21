@@ -18,8 +18,11 @@ var config = require('/lib/config');
 var schedule = {
 	stopId: stopid,
 	regionId: regionid,
+	data: {},
 	init: function(){
-			
+		this.data = AppData.getSchedule(this.regionId,this.stopId);
+		Ti.API.info(JSON.stringify(this.data));
+		
 		var view = Ti.UI.createView
 		({
 			top: 0,
@@ -41,18 +44,22 @@ var schedule = {
 			Ti.UI.currentWindow.close();
 		});
 		
-		var schedule = this.getSchedule();
 		
-		Ti.API.info(schedule[2]);
+		var currentStop = this.getSchedule();
 		
-		currColor = "";
-		if(schedule[0] > 6 && !schedule[2])
+		
+		var color = "";
+		if(currentStop[0] == -1)
+		{
+			color = config.TIME_COLOR_4;
+		}
+		if(currentStop[0] > 6)
 		{
 			currColor = config.TIME_COLOR_1;
 		}
 		else
 		{
-			if(schedule[0] < 3 || schedule[2])
+			if(currentStop[0] < 3)
 			{
 				currColor = config.TIME_COLOR_3;
 			}
@@ -62,7 +69,7 @@ var schedule = {
 			}
 		}
 		
-		if(!schedule[2])
+		if(currentStop[0] != -1)
 		{
 			var label0 = Ti.UI.createLabel
 			({
@@ -88,62 +95,60 @@ var schedule = {
 			view.add(label0);
 			view.add(label1);
 		}
+		else
+		{
+			var label0 = Ti.UI.createLabel
+			({
+				top:5,
+				text:"There are no scheduled arrivals remaining.",
+				color: config.TIME_COLOR_4,
+				height:"auto",
+				width:"auto",
+				font: config.SCHEDULE_FONT,
+				textAlign: Ti.UI.TEXT_ALIGNMENT_LEFT
+			});
+			view.add(label0);
+		}
+		
 		view.add(close);
-		var lView = this.getListOfStops(schedule[1]);
+		var lView = this.getListOfStops(currentStop[1]);
 		modal.add(view);
 		modal.add(lView);
 	},
 	getSchedule: function()
 	{
-		var ETA = 60;
-		var NextStop = '';
-		var d = new Date();
-		var curHours = d.getHours();
-		var curMinutes = d.getMinutes();
-		var sHour;
-		var sMinutes;
-		var time;
-		var tSplit;
-		var last = true;
-		var stopIndex;
+		var ETA = -1;
+		var arrival;
+		var index = 0;
+		var timeNow = new Date();
+		var schedule = this.data;
 		
-		var schedule = AppData.getSchedule(this.regionId,this.stopId);
 		
-		for(i = 0; i<schedule.length; i++)
-		{
-			time = schedule[i].time;
-			tSplit = time.split(':');
-			
-			sHour = (tSplit[0]);
-			sMinutes = (tSplit[1]);
-			
-			if(sHour == curHours)
+		for( time in schedule)
+		{	
+			var stopTime = this.parseTime(schedule[time][0]);
+			if(timeNow>stopTime)
 			{
-				if(sMinutes >= curMinutes)
-				{
-					ETA = (parseInt(sMinutes)-curMinutes);
-					stopIndex = i;
-					last = false;
-					break;
-				}
+				continue;
 			}
-			if(sHour == curHours+1)
+			else
 			{
-				ETA = (parseInt(sMinutes)+(60-curMinutes));
-				stopIndex = i;
-				last = false;
+				arrival = stopTime;
+				ETA = Math.round(((stopTime.getTime() - timeNow.getTime())/1000)/60);
+				index = time;
 				break;
 			}
 		}
 		
-		return [ETA, stopIndex, last];
+		return [ETA, index, arrival];
 		
 		
 	},
 	getListOfStops: function(index){
-		var schedule = AppData.getSchedule(this.regionId,this.stopId);
+		var schedule = this.data;
 		var listView = Ti.UI.createListView({
-				backgroundColor: "dark blue"
+				backgroundColor: config.MODAL_BACKGROUND_COLOR,
+				separatorColor: config.DEFAULT_FONT_COLOR
 			});
 		var sections = [];
 		var dataset = [];
@@ -151,32 +156,45 @@ var schedule = {
 				headerTitle: 'Remaining Schedule'
 			});
 		
-		for(i = (index+1); i<schedule.length; i++)
+		for(time in schedule)
 		{
-			
-			var time = schedule[i].time;
-			var tSplit = time.split(':');
-			
-			var sHour = (tSplit[0]);
-			var sMinutes = (tSplit[1]);
-			
-			
-			if(sHour > 12)
-			{
-				time = (parseInt(sHour)-12)+":"+sMinutes+" PM";
-			}
-			else
-			{
-				time = sHour+":"+sMinutes+" AM";
-			}
-			
-			dataset.push({properties: { title: time}});
+			dataset.push({properties: 
+					{ 
+					title: this.parseTime(schedule[time][0].split(" ")[0]),
+					font: config.ALTERNATIVE_FONT,
+					color: config.DEFAULT_FONT_COLOR,
+					height: "20px"
+					}
+			});
 		}
 		
-			stopSection.setItems(dataset);
-			sections.push(stopSection);
-			listView.sections = sections;
-			return listView;
+		stopSection.setItems(dataset);
+		sections.push(stopSection);
+		listView.sections = sections;
+		return listView;
+	},
+	parseTime: function(timeStr, dt)
+	{
+	    if (!dt) {
+	        dt = new Date();
+	    }
+	 
+	    var time = timeStr.match(/(\d+)(?::(\d\d))?\s*(p?)/i);
+	    if (!time) {
+	        return NaN;
+	    }
+	    var hours = parseInt(time[1], 10);
+	    if (hours == 12 && !time[3]) {
+	        hours = 0;
+	    }
+	    else {
+	        hours += (hours < 12 && time[3]) ? 12 : 0;
+	    }
+	 
+	    dt.setHours(hours);
+	    dt.setMinutes(parseInt(time[2], 10) || 0);
+	    dt.setSeconds(0, 0);
+	    return dt;
 	}
 };
 schedule.init();

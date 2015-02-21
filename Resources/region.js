@@ -6,6 +6,7 @@
  * requires: lib.config, lib.data;
  */
 var config = require('/lib/config');
+var data = require('/lib/data');
 var regionWindow = Ti.UI.currentWindow;
 var Draggable = require('ti.draggable');
 
@@ -28,10 +29,6 @@ switch(location)
 		regionid = 1;
 	break;
 
-	case 'About':
-		imageMap = config.HS_ASSETS+'/images/map.jpg';
-		regionid = 1;
-	break;
 }
 
 
@@ -56,24 +53,21 @@ var region = {
 
 		this.container.draggable.setConfig
 		({
-		  minLeft: -1302+config.DISP_WIDTH,
+		  minLeft: config.DISP_WIDTH-1302,
 		  maxLeft: 0,
-		  minTop: -1178+config.DISP_HEIGHT-((config.DISP_HEIGHT/10)/2),
+		  minTop: (config.DISP_HEIGHT-((config.DISP_HEIGHT/10)/2))-1178,
 		  maxTop: 0
 		});
 		
 		this.container.add(this.buildMap());
 		
-		var data = require('/lib/data');
+		
 		var AppData = new data();
 		var stops = AppData.getStops(regionid);
 
-		for(i = 0; i<stops.length; i++)
+		for(i in stops)
 		{
-			if(stops[i].Long != "" && stops[i].Lat !="")
-			{
-				this.addStops(regionid, stops[i].Id, stops[i].x, stops[i].y);
-			}
+			this.addStops(regionid, i, stops[i][1][0], stops[i][1][1]);
 		}
 
 		regionWindow.add(this.container);

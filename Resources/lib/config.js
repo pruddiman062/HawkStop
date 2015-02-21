@@ -109,7 +109,7 @@ exports.TIME_COLOR_3 = "#FF0000";
 exports.TIME_COLOR_4 = "#000000";
 
 //Data URI
-exports.DATA_URI = "http://shuttleapp.patrickruddiman.com/xml.php";
+exports.DATA_URI = "http://shuttleapp.patrickruddiman.com/JSON.php";
 exports.LOCAL_XML = exports.HS_ASSETS+'/feed.xml';
 
 //STRINGS

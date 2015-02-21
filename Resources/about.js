@@ -12,80 +12,9 @@ var config = require('/lib/config');
 
 //var Draggable = require('ti.draggable');
 
-var about = 
-{
+var about = {
 
-	init: function()
-	{
-		var background = Ti.UI.createView
-		({
-			backgroundColor:'#000000',
-			opacity: 0.6,
-		});
-
-		var list = Ti.UI.createListSection({});
-
-		var listItems = 
-		[
-			{properties: 	{ 
-								title: config.DROP_DOWN_MENU_ITEMS[0],
-								font: config.ALTERNATIVE_FONT,
-								color: config.DEFAULT_FONT_COLOR,
-							}},
-			{properties: 	{ 
-								title: config.DROP_DOWN_MENU_ITEMS[1],
-								font: config.ALTERNATIVE_FONT,
-								color: config.DEFAULT_FONT_COLOR,
-							}},
-			{properties: 	{ 
-								title: config.DROP_DOWN_MENU_ITEMS[2],
-								font: config.ALTERNATIVE_FONT,
-								color: config.DEFAULT_FONT_COLOR,
-							}},
-			{properties: 	{ 
-								title: config.DROP_DOWN_MENU_ITEMS[3],
-								font: config.ALTERNATIVE_FONT,
-								color: config.DEFAULT_FONT_COLOR,
-							}},
-		];
-
-		list.setItems( listItems );
-
-		var listView = Ti.UI.createListView
-		({
-			width:"45%",
-			height:"40%",
-			top: config.MENU_BUTTON_TOP_MARGIN,
-			left: "0%",
-			sections: [ list ],
-			backgroundColor: config.MODAL_BACKGROUND_COLOR,
-			separatorColor: config.DEFAULT_FONT_COLOR
-		});
-		
-		listView.addEventListener('itemclick', function( e ) 
-		{
-			var win = Ti.UI.createWindow
-			({
-				url:'aboutMenuItem.js',
-				itemIndex: e.itemIndex,
-			});
-			
-			win.open();
-
-			//modal.close();
-		});
-
-		background.addEventListener('click',function()
-		{
-			modal.close();
-		});
-
-		modal.add( background );
-
-		modal.add( listView );
-
-	},
-
+	
 	//returns the width of a string in pixels
 	//to be used to know how big a string will be on the screen
 	getStringPixelLength: function( string, font )

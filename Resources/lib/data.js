@@ -26,9 +26,9 @@ var _readObject = function()
 {
 	var f = Ti.Filesystem.getFile(Ti.Filesystem.applicationDataDirectory,'data.json');
 	json_string = f.read();
-	data_object = JSON.parse(f.read());
-	
-	return data_object;	
+	data_object = JSON.parse(json_string);
+	Ti.API.info(data_object);
+	return JSON.parse(data_object);	
 };
 
 data.parseXML = function(XML)
@@ -80,7 +80,7 @@ data.prototype.init =  function(callback)
 	if(!Ti.App.Properties.dataObject)
 	{
 		this.xhr.onload = function() {
-			data_o = data.parseXML(this.responseXML);
+			data_o = this.responseText;
 			_saveObject(data_o);
 		    callback();
 		};
@@ -101,49 +101,21 @@ data.prototype.init =  function(callback)
 data.prototype.getStops = function(regionid)
 {	
 	var data_object = _readObject();
-	var index = 0;
-	for(i = 0; i<data_object.length && regionid != data_object[i].regionId; i++)
-	{
-		index = i;
-	}
-	if(index == (data_object.length-1) && regionid != data_object[index].regionId)
-	{
-		alert("Region not found");
-		return null;
-	}
-	else
-	{
-		return data_object[index].stops;
-	}
+
+	return data_object[regionid].STOPS;
+	
 };
 data.prototype.getSchedule = function(regionid,stopid)
 {	
 	var data_object = _readObject();
 	var index = 0;
-	for(i = 0; i<data_object.length && regionid != data_object[i].regionId; i++)
-	{
-		index = i;
-	}
-	if(index == (data_object.length-1) && regionid != data_object[index].regionId)
-	{
-		alert("Region not found");
-		return null;
-	}
-	else
-	{
-		var sIndex = 0;
-		
-		for(var N = 0; N < data_object[index].stops.length; N++)
-		{
-			if(stopid == data_object[index].stops[N].Id)
-			{
-				return data_object[index].stops[N].schedule;
-			}
-		}
-		alert("Schedule not found");
-		return null;
-		
-	}
+	
+	Ti.API.info(regionid);
+	
+	Ti.API.info(JSON.stringify(data_object[regionid].STOPS[stopid][3]));
+	
+	return data_object[regionid].STOPS[stopid][3];
+	
 };
 
 data.prototype.pushLocation = function(latitude, longitude)
