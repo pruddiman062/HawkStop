@@ -85,7 +85,7 @@ var schedule = {
 			var label1 = Ti.UI.createLabel
 			({
 				top:25,
-				text:schedule[0]+" minutes",
+				text:currentStop[0]+" minutes",
 				color: currColor,
 				height:"auto",
 				width:"auto",
@@ -140,6 +140,11 @@ var schedule = {
 			}
 		}
 		
+		Ti.API.info("Arrival: "+arrival);
+		Ti.API.info("ETA: "+ETA+" Minutes");
+		Ti.API.info("Time Now: "+timeNow);
+		
+		
 		return [ETA, index, arrival];
 		
 		
@@ -158,12 +163,13 @@ var schedule = {
 		
 		for(time in schedule)
 		{
+			var timeString = 
 			dataset.push({properties: 
 					{ 
-					title: this.parseTime(schedule[time][0].split(" ")[0]),
-					font: config.ALTERNATIVE_FONT,
-					color: config.DEFAULT_FONT_COLOR,
-					height: "20px"
+						title: this.formatAMPM(this.parseTime(schedule[time][0])),
+						font: config.ALTERNATIVE_FONT,
+						color: config.DEFAULT_FONT_COLOR,
+						height: "80px"
 					}
 			});
 		}
@@ -195,6 +201,16 @@ var schedule = {
 	    dt.setMinutes(parseInt(time[2], 10) || 0);
 	    dt.setSeconds(0, 0);
 	    return dt;
+	},
+	formatAMPM:	function (date) {
+	  var hours = date.getHours();
+	  var minutes = date.getMinutes();
+	  var ampm = hours >= 12 ? 'pm' : 'am';
+	  hours = hours % 12;
+	  hours = hours ? hours : 12; // the hour '0' should be '12'
+	  minutes = minutes < 10 ? '0'+minutes : minutes;
+	  var strTime = hours + ':' + minutes + ' ' + ampm;
+	  return strTime;
 	}
 };
 schedule.init();
