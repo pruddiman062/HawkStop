@@ -54,7 +54,7 @@ var mainMenu = {
 
 		this.container.add( this.addButton( "Campus", 1, config.MENU_BUTTON_HEIGHT, this.container ));
 
-		this.container.add( this.addButton( "Bay Point", 2, config.MENU_BUTTON_HEIGHT, this.container ));
+		this.container.add( this.addButton( "Baypoint", 2, config.MENU_BUTTON_HEIGHT, this.container ));
 		
 		Ti.UI.currentWindow.add( this.container );
 
@@ -68,8 +68,7 @@ var mainMenu = {
 		var container = Ti.UI.createView
 		({
 			width: config.MENU_BUTTON_WIDTH,
-			height: buttonHeight,
-
+			height: buttonHeight
 		});
 
 		var background = Ti.UI.createView
@@ -86,7 +85,7 @@ var mainMenu = {
 		//add a label
 		var label = Ti.UI.createLabel
 		({
-			color: "#FFFFFF",
+			color: "#003660",
 			height:"auto",
 			width:"auto",
 			font: config.DEFAULT_FONT,
@@ -96,7 +95,6 @@ var mainMenu = {
 
 		});
 
-		//add an image icon
 		var imageIcon = Ti.UI.createImageView
 		({
 			image: ( "" + config.HS_ASSETS + config.MENU_BUTTON_ICON_PATH + iconID + ".png" ),
@@ -106,35 +104,21 @@ var mainMenu = {
 
 		});
 
-		//add a translucent button for clicking
-		var button =  Ti.UI.createButton
-		({
-			width: "100%",
-			height: "100%",
-			backgroundColor: "transparent"
-		});
-
-		container.add( background );
-
-		container.add( label );
-
-		container.add( imageIcon );
-
-		container.add( button );
-
-		button.addEventListener( 'click', function( e ) 
+		imageIcon.addEventListener('click', function(e) 
 		{
-
 			var win = Ti.UI.createWindow
 			({
 				url:'region.js',
 				locale: buttonText
 			});
-			
 			win.open();
-			//Ti.UI.currentWindow.close();
-				
 		});
+		
+		container.add( background );
+
+		container.add( label );
+
+		container.add( imageIcon );
 
 		return container;
 	},
@@ -159,7 +143,7 @@ var mainMenu = {
 		//add a label
 		var label = Ti.UI.createLabel
 		({
-			color: "#000000",
+			color: "#003660",
 			height:"auto",
 			width:"auto",
 			font: config.DEFAULT_FONT,

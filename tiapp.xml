@@ -9,7 +9,7 @@
     <url>http://shuttleapp.patrickruddiman.com</url>
     <description>undefined</description>
     <copyright>2014 by Patrick</copyright>
-    <icon>icon.png</icon>
+    <icon>appicon.png</icon>
     <fullscreen>false</fullscreen>
     <navbar-hidden>true</navbar-hidden>
     <analytics>true</analytics>
@@ -42,9 +42,29 @@
     </ios>
     <android xmlns:android="http://schemas.android.com/apk/res/android">
         <manifest>
-            <application android:theme="@style/Theme.NoActionBar"/>
             <!-- Need to specify at least API level 11 for Titanium SDK 3.2.x and prior -->
             <uses-sdk android:minSdkVersion="14" android:targetSdkVersion="19"/>
+            <!-- Allows the API to download data from Google Map servers -->
+            <uses-permission android:name="android.permission.INTERNET"/>
+            <!-- Allows the API to cache data -->
+            <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+            <!-- Use GPS for device location -->
+            <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+            <!-- Use Wi-Fi or mobile connection for device location -->
+            <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+            <!-- Allows the API to access Google web-based services -->
+            <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES"/>
+            <!-- Specify OpenGL ES 2.0 as a requirement -->
+            <uses-feature android:glEsVersion="0x00020000" android:required="true"/>
+            <!-- Replace <com.domain.appid> with your application ID -->
+            <uses-permission android:name="teche.hawkstop.permission.MAPS_RECEIVE"/>
+            <permission
+                android:name="teche.hawkstop.permission.MAPS_RECEIVE" android:protectionLevel="signature"/>
+            <application android:theme="@style/Theme.NoActionBar">
+                <!-- Replace "PASTE YOUR GOOGLE MAPS API KEY HERE" with the Google API key you obtained -->
+                <meta-data
+                    android:name="com.google.android.maps.v2.API_KEY" android:value="AIzaSyCzRol568Fd_aVDF1pc6trIiCWBt8UuB60"/>
+            </application>
         </manifest>
     </android>
     <mobileweb>
@@ -56,7 +76,7 @@
         <theme>default</theme>
     </mobileweb>
     <modules>
-        <module version="2.0.3">ti.draggable</module>
+        <module platform="android">ti.map</module>
     </modules>
     <deployment-targets>
         <target device="iphone">true</target>
@@ -65,5 +85,5 @@
         <target device="blackberry">true</target>
         <target device="mobileweb">true</target>
     </deployment-targets>
-    <sdk-version>3.4.0.GA</sdk-version>
+    <sdk-version>3.5.1.GA</sdk-version>
 </ti:app>

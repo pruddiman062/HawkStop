@@ -140,13 +140,7 @@ var schedule = {
 			}
 		}
 		
-		Ti.API.info("Arrival: "+arrival);
-		Ti.API.info("ETA: "+ETA+" Minutes");
-		Ti.API.info("Time Now: "+timeNow);
-		
-		
 		return [ETA, index, arrival];
-		
 		
 	},
 	getListOfStops: function(index){
@@ -190,13 +184,9 @@ var schedule = {
 	        return NaN;
 	    }
 	    var hours = parseInt(time[1], 10);
-	    if (hours == 12 && !time[3]) {
-	        hours = 0;
-	    }
-	    else {
-	        hours += (hours < 12 && time[3]) ? 12 : 0;
-	    }
-	 
+	   
+	    hours += (hours < 12 && time[3]) ? 12 : 0;
+	    
 	    dt.setHours(hours);
 	    dt.setMinutes(parseInt(time[2], 10) || 0);
 	    dt.setSeconds(0, 0);

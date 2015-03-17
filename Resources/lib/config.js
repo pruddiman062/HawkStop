@@ -6,13 +6,35 @@
  *       It handles the globalization of variables.
  * 
  */
+/*
+ * Colors: 
+ * 			Dark Blue:  #003660
+ * 			Light Blue: #98C7E9
+ * 			Yellow: 	#E0A400 
+ */
 
-//getting our custom fonts
-var customFont = 'Santa Fe LET'; // use the friendly-name on iOS
-if(Ti.Platform.osname=='android') {
-   // on Android, use the "base name" of the file (name without extension)
-   customFont = 'SantaFeLetPlain';
-} 
+/*
+	Branching logic based on OS
+*/
+var osname = Ti.Platform.osname;
+var os = function(/*Object*/ map) {
+	var def = map.def||null; //default function or value
+ if (map[osname]) {
+ if (typeof map[osname] == 'function') { return map[osname](); }
+ else { return map[osname]; }
+	}
+ else {
+ if (typeof def == 'function') { return def(); }
+ else { return def; }
+	}
+};
+
+customFont = os({
+			iphone:'Lato',
+			ipad: 'Lato',
+			ipod: 'Lato',
+			android:'Lato-Regular'
+	});
 
 //Ti.API.info(customFont);
 
@@ -43,17 +65,17 @@ if(Ti.Platform.osname == 'mobileweb')
 //Remember to tell a programmer if you want to use custom fonts
 //because we have to do some fancy shit!
 exports.DEFAULT_FONT = 	{ 
-							fontStyle: customFont,
+							fontFamily: customFont,
 							fontSize: "30%", 
 							fontWeight: "bold"
 						};
 exports.ALTERNATIVE_FONT = 	{ 
-								fontStyle: customFont,
+								fontFamily: customFont,
 								fontSize: "20%", 
 								fontWeight: "normal"
 							};
 exports.SCHEDULE_FONT = 	{ 
-							fontStyle: customFont,
+							fontFamily: customFont,
 							fontSize: "20%", 
 							fontWeight: "bold"
 						};
@@ -62,10 +84,10 @@ exports.ALTERNATIVE_FONT_COLOR = "#000000";
 
 
 //App Menu General Settings
-exports.MENU_FULL_BACK_COLOR = "#0d1826";
+exports.MENU_FULL_BACK_COLOR = "#FFFFFF";
 
 //App Menu Button Settings
-exports.MENU_BG_COLOR = ['#FFEEEE','#EEFFEE','#EEEEFF','#FFD700' ];
+exports.MENU_BG_COLOR = ['#FFEEEE','#EEFFEE','#EEEEFF','#98C7E9' ];
 //exports.MENU_BG_COLOR = ['rgba(255,238,238,0)','rgba(238,255,238,0)','rgba(238,238,255,0)','rgba(255,215,0,1)' ];
 exports.MENU_BG_OPACITY = [ 0, 0, 0, 1 ];
 exports.MENU_BORDER_COLOR = '#000000';
