@@ -49,13 +49,13 @@ if((Ti.Platform.osname == 'iphone')||(Ti.Platform.osname == 'ipad'))
 {
 	exports.DISP_HEIGHT = Ti.Platform.displayCaps.platformHeight;
 	exports.DISP_WIDTH = Ti.Platform.displayCaps.platformWidth;
-	exports.STOP_ICON = "/images/stopIcon-32.png";
+	exports.STOP_ICON = "/images/pin.png";
 }
 else
 {
 	exports.DISP_HEIGHT = Ti.Platform.displayCaps.platformHeight*160/Ti.Platform.displayCaps.dpi;
 	exports.DISP_WIDTH = Ti.Platform.displayCaps.platformWidth*160/Ti.Platform.displayCaps.dpi;
-	exports.STOP_ICON = "/images/stopIcon-64.png";
+	exports.STOP_ICON = "/images/pin@2x.png";
 }
 if(Ti.Platform.osname == 'mobileweb')
 {
