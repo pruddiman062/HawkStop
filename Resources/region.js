@@ -49,13 +49,10 @@ var region = {
 		regionWindow.add(MapView);
 		for(i in stops)
 		{
-			//Ti.API.info(stops[i]);
-			//var mountainView = ;
 			MapView.addAnnotation(this.addStops(regionid, stops[i], i, stops[i][2][0], stops[i][2][1]));
 		}
 
 		regionWindow.add(this.buildControlBar());
-		//this.clean();
 	},
 
 	buildMap: function()
@@ -66,8 +63,7 @@ var region = {
 		            latitudeDelta:zoom, longitudeDelta:zoom},
 		    animate:true,
 		    regionFit:true,
-		    userLocation:true,
-		    annotations:this.pins
+		    userLocation:true
 		});
 		
 		mapview.addEventListener('click', function(e)
@@ -111,8 +107,8 @@ var region = {
 		    latitude:lat,
 		    longitude:long,
 		    title:st[0],
-		    showInfoWindow: false,
-		    image:config.HS_ASSETS+"/images/stopIcon-48.png",
+		    showInfoWindow: true,
+		    image:config.HS_ASSETS+config.STOP_ICON,
 			stop: stopid,
 			region: regionid
 		});

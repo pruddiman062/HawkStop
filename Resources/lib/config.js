@@ -43,16 +43,19 @@ exports.HS_ASSETS = exports.HS_RESOURCES + 'assets';
 
 exports.DISP_WIDTH;
 exports.DISP_HEIGHT;
+exports.STOP_ICON;
 
 if((Ti.Platform.osname == 'iphone')||(Ti.Platform.osname == 'ipad'))
 {
 	exports.DISP_HEIGHT = Ti.Platform.displayCaps.platformHeight;
 	exports.DISP_WIDTH = Ti.Platform.displayCaps.platformWidth;
+	exports.STOP_ICON = "/images/stopIcon-32.png";
 }
 else
 {
 	exports.DISP_HEIGHT = Ti.Platform.displayCaps.platformHeight*160/Ti.Platform.displayCaps.dpi;
 	exports.DISP_WIDTH = Ti.Platform.displayCaps.platformWidth*160/Ti.Platform.displayCaps.dpi;
+	exports.STOP_ICON = "/images/stopIcon-64.png";
 }
 
 if(Ti.Platform.osname == 'mobileweb')
@@ -80,6 +83,12 @@ exports.SCHEDULE_FONT = 	{
 							fontSize: "20%", 
 							fontWeight: "bold"
 						};
+						
+exports.TITLE_FONT = 	{ 
+	fontFamily: customFont,
+	fontSize: "45%", 
+	fontWeight: "bold"
+};
 exports.DEFAULT_FONT_COLOR = "#000000";
 exports.ALTERNATIVE_FONT_COLOR = "#000000";
 
@@ -88,16 +97,16 @@ exports.ALTERNATIVE_FONT_COLOR = "#000000";
 exports.MENU_FULL_BACK_COLOR = "#FFFFFF";
 
 //App Menu Button Settings
-exports.MENU_BG_COLOR = ['#FFEEEE','#EEFFEE','#EEEEFF','#98C7E9' ];
+exports.MENU_BG_COLOR = ['#E0A400','#003660','#98C7E9','#FFFFFF' ];
 //exports.MENU_BG_COLOR = ['rgba(255,238,238,0)','rgba(238,255,238,0)','rgba(238,238,255,0)','rgba(255,215,0,1)' ];
-exports.MENU_BG_OPACITY = [ 0, 0, 0, 1 ];
+exports.MENU_BG_OPACITY = [ 1, 1, 1, 1 ];
 exports.MENU_BORDER_COLOR = '#000000';
 exports.MENU_BORDER_WIDTH = '2px';
 exports.MENU_BORDER_RADIUS = '15px';
 exports.MENU_BUTTON_WIDTH = "100%";
-exports.MENU_BUTTON_HEIGHT = "26%";
-exports.MENU_TITLE_HEIGHT = "12%";
-exports.MENU_BUTTON_TOP_MARGIN = "5%";
+exports.MENU_BUTTON_HEIGHT = "30%";
+exports.MENU_TITLE_HEIGHT = "10%";
+exports.MENU_BUTTON_TOP_MARGIN = "0";
 
 //App Menu Icon Settings
 exports.MENU_BUTTON_ICON_PATH = "/images/menuIcon";
