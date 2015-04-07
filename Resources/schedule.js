@@ -73,7 +73,7 @@ var schedule = {
 		{
 			var label0 = Ti.UI.createLabel
 			({
-				top:5,
+				top: 5,
 				text:"The shuttle arrives in:",
 				color: config.TIME_COLOR_4,
 				height:"auto",

@@ -38,19 +38,19 @@ var aboutMenuItem =
 		}
 
 		//settings
-		else if( itemIndex === 1 )
-		{
-			scrollView = this.createSettings();
-		}
+		// else if( itemIndex === 1 )
+		// {
+			// scrollView = this.createSettings();
+		// }
 
 		//about
-		else if( itemIndex === 2 )
+		else if( itemIndex === 1 )
 		{
 			scrollView = this.createAbout();
 		}
 
 		//credits
-		else if( itemIndex === 3 )
+		else if( itemIndex === 2 )
 		{
 			scrollView = this.createCredits();
 		}
@@ -92,6 +92,18 @@ var aboutMenuItem =
 		});
 
 		return tempLabel;
+	},
+	
+	createBasicImage: function( imagePath )
+	{
+		var imageIcon = Ti.UI.createImageView
+		({
+			image: ( imagePath ),
+			width: "auto",
+			height: "auto",
+		});
+		
+		return imageIcon;
 	},
 
 	createBasicList: function( title, arrayOfListItems )
@@ -157,10 +169,17 @@ var aboutMenuItem =
 		var label1 = this.createBasicLabel( config.HOW_TO_TEXT[0] );
 		var label2 = this.createBasicLabel( config.HOW_TO_TEXT[1] );
 		var label3 = this.createBasicLabel( config.HOW_TO_TEXT[2] );
+		
+		var image1 = this.createBasicImage( config.HOW_TO_IMAGES[0] );
+		var image2 = this.createBasicImage( config.HOW_TO_IMAGES[1] );
+		var image3 = this.createBasicImage( config.HOW_TO_IMAGES[2] );
 
 		view1.add( label1 );
+		view1.add( image1 );
 		view2.add( label2 );
+		view2.add( image2 );
 		view3.add( label3 );
+		view3.add( image3 );
 
 		//Scrollable view
 		var scrollView = Ti.UI.createScrollableView
@@ -196,9 +215,12 @@ var aboutMenuItem =
 		//regular views
 		var view1 = this.createBasicView();
 
-		var label1 = this.createBasicLabel( "App built by RWU Technical Entrepreneurs (Tech-Es)" );
+		var label1 = this.createBasicLabel( config.ABOUT_TEXT );
+		
+		var image1 = this.createBasicImage( config.ABOUT_IMAGE );
 
 		view1.add( label1 );
+		view1.add( image1 );
 
 		//Scrollable view
 		var scrollView = Ti.UI.createScrollableView
