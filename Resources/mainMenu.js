@@ -317,6 +317,7 @@ var mainMenu = {
 		
 		
 		//MENU ITEM 1:
+		/*
 			var item1 = Ti.UI.createView({
 				width: "100%",
 				height: "20%"
@@ -353,7 +354,7 @@ var mainMenu = {
 				
 				win.open();
 			});
-			
+			*/
 			
 		//MENU ITEM 2:
 			var item2 = Ti.UI.createView({
@@ -427,7 +428,7 @@ var mainMenu = {
 		titleView.add(title);
 		view.add(titleView);
 		view.add(item0);
-		view.add(item1);
+		//view.add(item1);
 		view.add(item2);
 		view.add(item3);
 		mainMenu.aboutContainer.add(view);

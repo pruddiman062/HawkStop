@@ -12,7 +12,7 @@ var config = require('/lib/config');
 
 var itemIndex = modal.itemIndex;
 
-//var Draggable = require('ti.draggable');
+
 
 var aboutMenuItem = 
 {
@@ -44,13 +44,13 @@ var aboutMenuItem =
 		// }
 
 		//about
-		else if( itemIndex === 1 )
+		else if( itemIndex === 2 )
 		{
 			scrollView = this.createAbout();
 		}
 
 		//credits
-		else if( itemIndex === 2 )
+		else if( itemIndex === 3 )
 		{
 			scrollView = this.createCredits();
 		}
@@ -235,20 +235,18 @@ var aboutMenuItem =
 	createCredits: function()
 	{
 		//regular views
-		var view1 = this.createBasicView();
 		var view2 = this.createBasicView();
 		var view3 = this.createBasicView();
 
 		//Project Leads
 
-		view1.add( this.createBasicList( "Project Leads", config.PROJECT_LEADS ) );
 		view2.add( this.createBasicList( "Club Officers", config.CLUB_OFFICERS ) );
 		view3.add( this.createBasicList( "Supporting Club Members", config.SUPPORTING_CLUB_MEMBERS ) );
 
 		//Scrollable view
 		var scrollView = Ti.UI.createScrollableView
 		({
-			views:[view1, view2, view3],
+			views:[view2, view3],
 			showPagingControl:true,
 		});
 

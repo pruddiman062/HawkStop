@@ -122,6 +122,8 @@ exports.ICON_SIZE_UNITS = 'px';
 
 //about page settings
 exports.ABOUT_HEIGHT = '30%';
+exports.ABOUT_TEXT = "App built by the RWU Technical Entrepreneurs";
+exports.ABOUT_IMAGE = "/assets/images/techLogo.png";
 
 //Schedule modal settings
 exports.MODAL_HEIGHT = '15%';
@@ -141,14 +143,19 @@ exports.LOCAL_XML = exports.HS_ASSETS+'/feed.xml';
 //STRINGS
 exports.DROP_DOWN_MENU_ITEMS = [ "How To Use", "Settings", "About", "Contributors" ];
 
-exports.HOW_TO_TEXT = 	["Hello! Welcome to HawkStop!",
-						"Simply tap the map you want to access.",
-						"Then tap the stop you want times from."];
-exports.PROJECT_LEADS = [ "Design Team: Karly Rust","App Team: Dan Barron","Business Team: Dylan Jann" ];
+exports.HOW_TO_TEXT = 	["First, tap the map you want times from",
+						"Then, tap the stop you need",
+						"The next shuttle and available times that day will be displayed."];
+exports.HOW_TO_IMAGES = [
+							"/assets/images/howTo1.png",
+							"/assets/images/howTo2.png",
+							"/assets/images/howTo3.png"
+						];
+
 exports.CLUB_OFFICERS = [ 	"President: Willem Delventhal", "Vice President: Patrick Ruddiman", "Secretary: Chris Wade",
 							"Treasurer: Alex Quaglieri", "Media Lead: Shayna Moran" ];
-exports.SUPPORTING_CLUB_MEMBERS = [ "First Last", "First Last", "First Last", "First Last", "First Last", "First Last",
-									"First Last", "First Last", "First Last", "First Last", "First Last", "First Last" ];
+exports.SUPPORTING_CLUB_MEMBERS = [ "Alex Di Iorio - Graphic Designer", "David McIvor - Graphic Designer", "David Wood", "Isaac Goldman - Graphic Designer", 
+									"Matthew Gallagher - Graphic Designer", "Nicole Vermes - Graphic Designer", "Sean Doyle" ];
 
 if(Ti.App.Properties.xmlDownload == undefined)
 {	
