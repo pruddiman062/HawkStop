@@ -123,11 +123,6 @@ exports.ICON_SIZE_UNITS = 'px';
 //about page settings
 exports.ABOUT_HEIGHT = '30%';
 
-//Zoom Settings
-exports.ZOOM_AMOUNT = 0.25;
-exports.MAX_ZOOM_IN = 1;
-exports.MAX_ZOOM_OUT = 2;
-
 //Schedule modal settings
 exports.MODAL_HEIGHT = '15%';
 exports.MODAL_WIDTH = '100%';
@@ -144,7 +139,8 @@ exports.DATA_URI = "http://shuttleapp.patrickruddiman.com/JSON.php";
 exports.LOCAL_XML = exports.HS_ASSETS+'/feed.xml';
 
 //STRINGS
-exports.DROP_DOWN_MENU_ITEMS = [ "How To Use", "Settings", "About", "Credits" ];
+exports.DROP_DOWN_MENU_ITEMS = [ "How To Use", "Settings", "About", "Contributors" ];
+
 exports.HOW_TO_TEXT = 	["Hello! Welcome to HawkStop!",
 						"Simply tap the map you want to access.",
 						"Then tap the stop you want times from."];

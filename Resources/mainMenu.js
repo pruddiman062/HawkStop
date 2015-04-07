@@ -9,6 +9,7 @@
  /*global require*/
 
 var config = require('/lib/config');
+var Map = require('ti.map');
 
 var mainMenu = {
 	//Container for this view
@@ -143,7 +144,8 @@ var mainMenu = {
 			var win = Ti.UI.createWindow
 			({
 				url:'region.js',
-				locale: buttonText
+				locale: buttonText,
+				mapOBJ: Map
 			});
 			win.open();
 		});
@@ -184,7 +186,7 @@ var mainMenu = {
 			font: config.DEFAULT_FONT,
 			text: "HawkStop",
 			textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER,
-			top: "27%"
+			top: "28%"
 
 		});
 		
@@ -194,7 +196,7 @@ var mainMenu = {
 			width: "15%",
 			height: "auto",
 			left: "1%",
-			top: "27%"
+			top: "26%"
 		});
 		
 		container.add( background );
@@ -274,6 +276,46 @@ var mainMenu = {
 			top: "40%"
 		});
 		
+		
+		//MENU ITEM 0:
+			var item0 = Ti.UI.createView({
+				width: "100%",
+				height: "20%"
+			});
+			
+			var howToImage = Ti.UI.createImageView({
+				image: ( "" + config.HS_ASSETS + "/images/question.jpg" ),
+				//height: '55%',
+				left:"5%"
+			});
+			
+			var item0Label = Ti.UI.createLabel
+			({
+				color: "#003660",
+				height:"auto",
+				width:"auto",
+				font: config.ALTERNATIVE_FONT,
+				color: config.DEFAULT_FONT_COLOR,
+				text: config.DROP_DOWN_MENU_ITEMS[0],
+				textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER,
+				top: "40%"
+			});
+			
+			item0.add(howToImage);
+			item0.add(item0Label);
+		
+		item0.addEventListener('click', function( e ) 
+		{
+			var win = Ti.UI.createWindow
+			({
+				url:'aboutMenuItem.js',
+				itemIndex: 0,
+			});
+			
+			win.open();
+		});
+		
+		
 		//MENU ITEM 1:
 			var item1 = Ti.UI.createView({
 				width: "100%",
@@ -282,7 +324,7 @@ var mainMenu = {
 			
 			var settingsImage = Ti.UI.createImageView({
 				image: ( "" + config.HS_ASSETS + "/images/settings.png" ),
-				height: '55%',
+				//height: '55%',
 				left:"5%"
 			});
 			
@@ -300,62 +342,94 @@ var mainMenu = {
 			
 			item1.add(settingsImage);
 			item1.add(item1Label);
-		
-		/*
-		var list = Ti.UI.createListSection({});
-
-		var listItems = 
-		[
-			{properties: 	{ 
-								title: config.DROP_DOWN_MENU_ITEMS[0],
-								font: config.ALTERNATIVE_FONT,
-								color: config.DEFAULT_FONT_COLOR
-							}},
-			{properties: 	{ 
-								title: config.DROP_DOWN_MENU_ITEMS[1],
-								font: config.ALTERNATIVE_FONT,
-								color: config.DEFAULT_FONT_COLOR
-							}},
-			{properties: 	{ 
-								title: config.DROP_DOWN_MENU_ITEMS[2],
-								font: config.ALTERNATIVE_FONT,
-								color: config.DEFAULT_FONT_COLOR
-							}},
-			{properties: 	{ 
-								title: config.DROP_DOWN_MENU_ITEMS[3],
-								font: config.ALTERNATIVE_FONT,
-								color: config.DEFAULT_FONT_COLOR
-							}}
-		];
-
-		list.setItems( listItems );
-
-
-		var listView = Ti.UI.createListView
-		({
-			width:"100%",
-			height:"90%",
-			sections: [ list ],
-			backgroundColor: config.MODAL_BACKGROUND_COLOR,
-			separatorColor: config.DEFAULT_FONT_COLOR
-		});
-		
-		listView.addEventListener('itemclick', function( e ) 
-		{
-			var win = Ti.UI.createWindow
-			({
-				url:'aboutMenuItem.js',
-				itemIndex: e.itemIndex,
+			
+			item1.addEventListener('click', function( e ) 
+			{
+				var win = Ti.UI.createWindow
+				({
+					url:'aboutMenuItem.js',
+					itemIndex: 1,
+				});
+				
+				win.open();
 			});
 			
-			win.open();
-
-			//modal.close();
-		});
-		*/
+			
+		//MENU ITEM 2:
+			var item2 = Ti.UI.createView({
+				width: "100%",
+				height: "20%"
+			});
+			
+			var aboutImage = Ti.UI.createImageView({
+				image: ( "" + config.HS_ASSETS + "/images/about.png" ),
+				//height: '55%',
+				left:"5%"
+			});
+			
+			var item2Label = Ti.UI.createLabel
+			({
+				color: "#003660",
+				height:"auto",
+				width:"auto",
+				font: config.ALTERNATIVE_FONT,
+				color: config.DEFAULT_FONT_COLOR,
+				text: config.DROP_DOWN_MENU_ITEMS[2],
+				textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER,
+				top: "40%"
+			});
+			
+			item2.add(aboutImage);
+			item2.add(item2Label);
+			
+			item2.addEventListener('click', function( e ) 
+			{
+				var win = Ti.UI.createWindow
+				({
+					url:'aboutMenuItem.js',
+					itemIndex: 2,
+				});
+				
+				win.open();
+			});
+		
+		//MENU ITEM 3:
+			var item3 = Ti.UI.createView({
+				width: "100%",
+				height: "20%"
+			});
+			
+					
+			var item3Label = Ti.UI.createLabel
+			({
+				color: "#003660",
+				height:"auto",
+				width:"auto",
+				font: config.ALTERNATIVE_FONT,
+				color: config.DEFAULT_FONT_COLOR,
+				text: config.DROP_DOWN_MENU_ITEMS[3],
+				textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER,
+				top: "40%"
+			});
+			
+			item3.add(item3Label);
+			item3.addEventListener('click', function( e ) 
+			{
+				var win = Ti.UI.createWindow
+				({
+					url:'aboutMenuItem.js',
+					itemIndex: 3,
+				});
+				
+				win.open();
+			});
+		
 		titleView.add(title);
 		view.add(titleView);
+		view.add(item0);
 		view.add(item1);
+		view.add(item2);
+		view.add(item3);
 		mainMenu.aboutContainer.add(view);
 		view.addEventListener("swipe", function(e){
 			if (e.direction == 'left') {

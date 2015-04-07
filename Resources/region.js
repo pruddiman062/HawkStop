@@ -6,12 +6,13 @@
  * requires: lib.config, lib.data;
  */
 var config = require('/lib/config');
-var Map = require('ti.map');
+
 var data = require('/lib/data');
 var regionWindow = Ti.UI.currentWindow;
 
 
 var location = regionWindow.locale;
+var Map = regionWindow.mapOBJ;
 var regionid = 0;
 var center = {};
 var zoom = .1;
@@ -43,6 +44,15 @@ var region = {
 	pins: [],
 	init: function()
 	{
+		regionWindow.add(Ti.UI.createView
+		({
+			width: "100%",
+			height: "100%",
+			backgroundColor: "#000000",
+			opacity: 0.7,
+			top: "0px",
+			left: "0px"
+		}));
 		var AppData = new data();
 		var stops = AppData.getStops(regionid);
 		var MapView = this.buildMap();
