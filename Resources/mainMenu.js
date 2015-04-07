@@ -188,11 +188,11 @@ var mainMenu = {
 								font: config.ALTERNATIVE_FONT,
 								color: config.DEFAULT_FONT_COLOR
 							}},
-			{properties: 	{ 
-								title: config.DROP_DOWN_MENU_ITEMS[1],
-								font: config.ALTERNATIVE_FONT,
-								color: config.DEFAULT_FONT_COLOR
-							}},
+			// {properties: 	{ 
+								// title: config.DROP_DOWN_MENU_ITEMS[1],
+								// font: config.ALTERNATIVE_FONT,
+								// color: config.DEFAULT_FONT_COLOR
+							// }},
 			{properties: 	{ 
 								title: config.DROP_DOWN_MENU_ITEMS[2],
 								font: config.ALTERNATIVE_FONT,

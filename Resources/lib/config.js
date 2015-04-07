@@ -54,6 +54,7 @@ else
 	exports.DISP_HEIGHT = Ti.Platform.displayCaps.platformHeight*160/Ti.Platform.displayCaps.dpi;
 	exports.DISP_WIDTH = Ti.Platform.displayCaps.platformWidth*160/Ti.Platform.displayCaps.dpi;
 }
+
 if(Ti.Platform.osname == 'mobileweb')
 {
 	exports.DISP_HEIGHT = 16*(50);
@@ -130,20 +131,37 @@ exports.TIME_COLOR_2 = "#FFFF00";
 exports.TIME_COLOR_3 = "#FF0000";
 exports.TIME_COLOR_4 = "#000000";
 
+//Region Stop Settings
+if((Ti.Platform.osname == 'iphone')||(Ti.Platform.osname == 'ipad'))
+{
+	exports.REGION_TOP = "5%";
+}
+else
+{
+	exports.REGION_TOP = 0;
+}
+
 //Data URI
 exports.DATA_URI = "http://shuttleapp.patrickruddiman.com/JSON.php";
 exports.LOCAL_XML = exports.HS_ASSETS+'/feed.xml';
 
 //STRINGS
-exports.DROP_DOWN_MENU_ITEMS = [ "How To Use", "Settings", "About", "Credits" ];
-exports.HOW_TO_TEXT = 	["Hello! Welcome to HawkStop!",
-						"Simply tap the map you want to access.",
-						"Then tap the stop you want times from."];
+exports.ABOUT_TEXT = "App built by the RWU Technical Entrepreneurs";
+exports.ABOUT_IMAGE = "/assets/images/techLogo.png";
+exports.DROP_DOWN_MENU_ITEMS = [ "How To", "Settings", "About", "Credits" ];
+exports.HOW_TO_TEXT = 	["First, tap the map you want times from",
+						"Then, tap the stop you need",
+						"The next shuttle and available times that day will be displayed."];
+exports.HOW_TO_IMAGES = [
+							"/assets/images/howTo1.png",
+							"/assets/images/howTo2.png",
+							"/assets/images/howTo3.png"
+						];
 exports.PROJECT_LEADS = [ "Design Team: Karly Rust","App Team: Dan Barron","Business Team: Dylan Jann" ];
 exports.CLUB_OFFICERS = [ 	"President: Willem Delventhal", "Vice President: Patrick Ruddiman", "Secretary: Chris Wade",
 							"Treasurer: Alex Quaglieri", "Media Lead: Shayna Moran" ];
-exports.SUPPORTING_CLUB_MEMBERS = [ "First Last", "First Last", "First Last", "First Last", "First Last", "First Last",
-									"First Last", "First Last", "First Last", "First Last", "First Last", "First Last" ];
+exports.SUPPORTING_CLUB_MEMBERS = [ "Alex Di Iorio - Graphic Designer", "David McIvor - Graphic Designer", "David Wood", "Isaac Goldman - Graphic Designer", 
+									"Matthew Gallagher - Graphic Designer", "Nicole Vermes - Graphic Designer", "Sean Doyle" ];
 
 if(Ti.App.Properties.xmlDownload == undefined)
 {	

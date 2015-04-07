@@ -6,7 +6,7 @@
  *       It handles the pull, storage, and the push of data.
  * Requires: lib.config
  */
-var config = require('config');
+var config = require('/lib/config');
 
 function data()
 {
