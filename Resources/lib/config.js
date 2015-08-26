@@ -153,7 +153,8 @@ exports.HOW_TO_IMAGES = [
 						];
 
 exports.CLUB_OFFICERS = [ 	"President: Willem Delventhal", "Vice President: Patrick Ruddiman", "Secretary: Chris Wade",
-							"Treasurer: Alex Quaglieri", "Media Lead: Shayna Moran" ];
+							"Treasurer: Alex Quaglieri", "Media Coordinator: Karly Rust" ];
+							
 exports.SUPPORTING_CLUB_MEMBERS = [ "Alex Di Iorio - Graphic Designer", "David McIvor - Graphic Designer", "David Wood", "Isaac Goldman - Graphic Designer", 
 									"Matthew Gallagher - Graphic Designer", "Nicole Vermes - Graphic Designer", "Sean Doyle" ];
 
